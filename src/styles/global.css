@@ -3,11 +3,17 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ═══════════════════════════════════════════════════════════════
+   THEME — all design tokens live here
+   Light values are the default; .dark overrides are below.
+═══════════════════════════════════════════════════════════════ */
 @theme inline {
     --radius-sm: calc(var(--radius) - 4px);
     --radius-md: calc(var(--radius) - 2px);
     --radius-lg: var(--radius);
     --radius-xl: calc(var(--radius) + 4px);
+
+    /* Map to CSS props for Tailwind utilities */
     --color-background: var(--background);
     --color-foreground: var(--foreground);
     --color-card: var(--card);
@@ -44,95 +50,199 @@
     --color-fallback-bg: oklch(0.95 0 0);
 }
 
+/* ───────────────────────────────
+   LIGHT MODE  (default)
+─────────────────────────────── */
 :root {
-    /* Color Palette */
+    /* Brand */
     --primary: #991B1B;
+    /* crimson */
     --primary-foreground: #FAFAF9;
-    --sidebar-primary: #991B1B;
-    --sidebar-primary-foreground: #FAFAF9;
-    --chart-1: #991B1B;
-    --chart-2: #78716C;
-    --chart-3: #E7E5E4;
-    --chart-4: #292524;
-    --chart-5: #991B1B;
-    --radius: 0.5rem;
+    --brand-yellow: #f59e0b;
+
+    /* Surfaces — warm stone scale */
     --background: #FAFAF9;
-    --foreground: #292524;
+    /* page bg   – stone 50  */
+    --foreground: #1C1917;
+    /* body text – stone 900 */
     --card: #F5F5F4;
-    --card-foreground: #292524;
+    /* elevated  – stone 100 */
+    --card-foreground: #1C1917;
     --popover: #FFFFFF;
-    --popover-foreground: #292524;
+    --popover-foreground: #1C1917;
+
+    /* Interactive / muted */
     --secondary: #E7E5E4;
-    --secondary-foreground: #78716C;
-    --muted: #D6D3D1;
+    /* stone 200 */
+    --secondary-foreground: #57534E;
+    /* stone 600 */
+    --muted: #E7E5E4;
+    /* stone 200 */
     --muted-foreground: #78716C;
+    /* stone 500 — readable, not washed out */
     --accent: #991B1B;
     --accent-foreground: #FAFAF9;
+
+    /* Semantic */
     --destructive: #991B1B;
     --destructive-foreground: #FAFAF9;
+
+    /* Borders & inputs */
     --border: #E7E5E4;
+    /* stone 200 — subtle, not heavy */
     --input: #F5F5F4;
     --ring: #991B1B;
-    --brand-yellow: #f59e0b;
+
+    /* Charts */
+    --chart-1: #991B1B;
+    --chart-2: #78716C;
+    --chart-3: #D6D3D1;
+    --chart-4: #1C1917;
+    --chart-5: #f59e0b;
+
+    /* Sidebar */
     --sidebar: #FAFAF9;
-    --sidebar-foreground: #292524;
+    --sidebar-foreground: #1C1917;
+    --sidebar-primary: #991B1B;
+    --sidebar-primary-foreground: #FAFAF9;
     --sidebar-accent: #991B1B;
     --sidebar-accent-foreground: #FAFAF9;
-    --sidebar-border: #E7E5E4;
+    --sidebar-border: #D6D3D1;
     --sidebar-ring: #991B1B;
-    /* Card shadow: neutral depth + subtle blue (complement of brand yellow on color wheel) */
-    --shadow-card: 0 14px 25px 0 rgb(44 48 56 / 0.13), 0 6px 16px -4px rgba(37 99 235 / 0.08);
-    /* Neumorphic soft UI: light highlight (top-left) + soft shadow (bottom-right) */
-    --shadow-neumorphic-light: #ffffff;
-    --shadow-neumorphic-dark: #D6D3D1;
-    --shadow-neumorphic: -8px -8px 16px var(--shadow-neumorphic-light), 8px 8px 16px var(--shadow-neumorphic-dark);
 
-    /* Fluid typography scale (clamp-based) */
+    /* Radii */
+    --radius: 0.5rem;
+
+    /* Shadows */
+    --shadow-card: 0 2px 8px 0 rgb(28 25 23 / 0.07), 0 1px 3px -1px rgb(28 25 23 / 0.05);
+    --shadow-neumorphic: -6px -6px 12px #ffffff, 6px 6px 12px #D6D3D1;
+
+    /* ── Services section tokens ── */
+    --section-border: #EDEAE8;
+    /* very soft divider — just perceptible */
+    --tile-bg: #FFFFFF;
+    /* tile surface – pure white lifts off background */
+    --tile-bg-hover: #FDF8F8;
+    /* faint warm tint on hover */
+    --tile-border: #EDEAE8;
+    /* resting: whisper-thin */
+    --tile-border-hover: #D9C5C5;
+    /* hover: muted dusty rose */
+    --icon-box-bg: #F5F0F0;
+    /* warm blush box */
+    --icon-box-color: #7F1D1D;
+    /* dark crimson icon */
+    --icon-box-bg-hover: #FCEAEA;
+    --icon-box-color-hover: #991B1B;
+    --quote-bg: #FDF9F6;
+    /* warm off-white for pull-quote */
+    --quote-border: #E7E5E4;
+    --block-index-color: #A8A29E;
+    /* stone 400 — faint numbering */
+    --eyebrow-color: #991B1B;
+
+    /* Fluid typography */
     --font-size-4: clamp(1rem, 1rem + 0.13vw, 1.25rem);
     --font-size-5: clamp(1.25rem, 1.25rem + 0.16vw, 1.563rem);
-    --font-size-6: clamp(1.563rem, 1.563rem + 0.2vw, 1.953rem);
-    --font-size-7: clamp(1.953rem, 1.953rem + 0.24vw, 2.441rem);
-    --font-size-8: clamp(2.441rem, 2.441rem + 0.31vw, 3.052rem);
-    --font-size-display-1: clamp(3.052rem, 3.052rem + 0.38vw, 3.815rem);
+    --font-size-6: clamp(1.563rem, 1.563rem+ 0.2vw, 1.953rem);
+    --font-size-7: clamp(1.953rem, 1.953rem+ 0.24vw, 2.441rem);
+    --font-size-8: clamp(2.441rem, 2.441rem+ 0.31vw, 3.052rem);
+    --font-size-display: clamp(3.052rem, 3.052rem+ 0.38vw, 3.815rem);
 }
 
+/* ───────────────────────────────
+   DARK MODE
+   Strategy: darker surfaces, higher-contrast text,
+   warmer midtones (avoids the cold-blue dark mode trap).
+─────────────────────────────── */
 .dark {
+    /* Brand stays the same */
     --primary: #991B1B;
     --primary-foreground: #FAFAF9;
-    --sidebar-primary: #991B1B;
-    --sidebar-primary-foreground: #FAFAF9;
     --brand-yellow: #f59e0b;
-    --background: #FAFAF9;
-    --foreground: #292524;
-    --card: #F5F5F4;
-    --card-foreground: #292524;
-    --popover: #FFFFFF;
-    --popover-foreground: #292524;
-    --secondary: #E7E5E4;
-    --secondary-foreground: #78716C;
-    --muted: #D6D3D1;
-    --muted-foreground: #78716C;
+
+    /* Surfaces — layered dark stone */
+    --background: #18120F;
+    /* deepest bg  – nearly black with warm hue */
+    --foreground: #F2EDE8;
+    /* body text   – warm white, not harsh #fff */
+    --card: #231C19;
+    /* card layer  – 1 step lighter than bg */
+    --card-foreground: #F2EDE8;
+    --popover: #2A211D;
+    --popover-foreground: #F2EDE8;
+
+    /* Interactive / muted */
+    --secondary: #3A2E29;
+    /* subtle interactive bg */
+    --secondary-foreground: #C4B5AD;
+    /* stone 300 equivalent */
+    --muted: #2E2420;
+    --muted-foreground: #A39388;
+    /* warm stone — readable as secondary text */
     --accent: #991B1B;
     --accent-foreground: #FAFAF9;
-    --destructive: #991B1B;
+
+    /* Semantic */
+    --destructive: #B91C1C;
     --destructive-foreground: #FAFAF9;
-    --border: #E7E5E4;
-    --input: #F5F5F4;
+
+    /* Borders & inputs — clearly visible in dark */
+    --border: #2E2320;
+    /* one step darker — less punchy against tile bg */
+    --input: #231C19;
     --ring: #991B1B;
-    --brand-yellow: #f59e0b;
-    --chart-1: #991B1B;
-    --chart-2: #78716C;
-    --chart-3: #E7E5E4;
-    --chart-4: #292524;
-    --chart-5: #991B1B;
-    --sidebar: #FAFAF9;
-    --sidebar-foreground: #292524;
+
+    /* Charts */
+    --chart-1: #B91C1C;
+    --chart-2: #A39388;
+    --chart-3: #3A2E29;
+    --chart-4: #F2EDE8;
+    --chart-5: #f59e0b;
+
+    /* Sidebar */
+    --sidebar: #18120F;
+    --sidebar-foreground: #F2EDE8;
+    --sidebar-primary: #991B1B;
+    --sidebar-primary-foreground: #FAFAF9;
     --sidebar-accent: #991B1B;
     --sidebar-accent-foreground: #FAFAF9;
-    --sidebar-border: #E7E5E4;
+    --sidebar-border: #2E2320;
     --sidebar-ring: #991B1B;
+
+    /* Shadows */
+    --shadow-card: 0 2px 12px 0 rgb(0 0 0 / 0.35), 0 1px 4px -1px rgb(0 0 0 / 0.25);
+    --shadow-neumorphic: -5px -5px 10px #231C19, 5px 5px 10px #0D0908;
+
+    /* ── Services section tokens (dark) ── */
+    --section-border: #2A1E1A;
+    /* barely-there warm divider */
+    --tile-bg: #231C19;
+    /* tile: slightly elevated from bg */
+    --tile-bg-hover: #2C1F1A;
+    /* warm dark hover */
+    --tile-border: #2E2320;
+    /* resting: close to tile bg, low contrast */
+    --tile-border-hover: #5C2E2E;
+    /* hover: muted crimson, not harsh */
+    --icon-box-bg: #2E1A1A;
+    /* subtle dark maroon icon box */
+    --icon-box-color: #F87171;
+    /* lighter red — readable on dark */
+    --icon-box-bg-hover: #3D2020;
+    --icon-box-color-hover: #FCA5A5;
+    --quote-bg: #1F1410;
+    /* deepest warm surface for pull-quote */
+    --quote-border: #2A1E1A;
+    --block-index-color: #5C4A42;
+    /* faint warm numbering */
+    --eyebrow-color: #F87171;
+    /* lighter red for small text readability */
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   BASE STYLES
+═══════════════════════════════════════════════════════════════ */
 @layer base {
     :root {
         --header-offset: 5.5rem;
@@ -155,95 +265,61 @@
 
     body {
         @apply bg-background text-foreground;
+        font-family: 'Sora', sans-serif;
+        font-weight: 400;
         font-size: var(--font-size-5);
         line-height: 1.45;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
 
+    /* ── Cursor: clickable elements ── */
     button:not(:disabled),
     [role="button"]:not([aria-disabled="true"]),
     [type="button"]:not(:disabled),
     [type="submit"]:not(:disabled),
-    [type="reset"]:not(:disabled),
     a[href],
     select:not(:disabled),
     input[type="checkbox"]:not(:disabled),
     input[type="radio"]:not(:disabled) {
-        @apply cursor-pointer;
+        cursor: pointer;
     }
 
-    /* Typography */
-    h1 {
-        font-family: 'Sora', sans-serif;
-        font-weight: 700;
-        font-size: 3rem;
-        line-height: 1.2;
-        letter-spacing: -0.02em;
-    }
-
-    @media (min-width: 768px) {
-        h1 {
-            font-size: 3.75rem;
-        }
-    }
-
-    @media (min-width: 1024px) {
-        h1 {
-            font-size: 4.5rem;
-        }
-    }
-
-    h2 {
-        font-family: 'Sora', sans-serif;
-        font-weight: 700;
-        font-size: 1.875rem;
-        line-height: 1.2;
-        letter-spacing: -0.02em;
-    }
-
-    @media (min-width: 768px) {
-        h2 {
-            font-size: 2.25rem;
-        }
-    }
-
-    @media (min-width: 1024px) {
-        h2 {
-            font-size: 3rem;
-        }
-    }
-
+    /* ── Headings ── */
+    h1,
+    h2,
     h3 {
         font-family: 'Sora', sans-serif;
         font-weight: 700;
-        font-size: 1.5rem;
-        line-height: 1.2;
-        letter-spacing: -0.02em;
+        letter-spacing: -0.025em;
+        line-height: 1.15;
     }
 
-    @media (min-width: 768px) {
-        h3 {
-            font-size: 1.875rem;
-        }
+    h1 {
+        font-size: clamp(2.5rem, 5vw, 4.5rem);
     }
 
-    body {
-        font-family: 'Sora', sans-serif;
-        font-weight: 400;
+    h2 {
+        font-size: clamp(1.875rem, 3.5vw, 3rem);
+    }
+
+    h3 {
+        font-size: clamp(1.25rem, 2vw, 1.875rem);
     }
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   COMPONENT STYLES
+═══════════════════════════════════════════════════════════════ */
 @layer components {
+
+    /* ── Layout ── */
     .container {
         width: 100%;
         margin-left: auto;
         margin-right: auto;
         padding-left: 1rem;
         padding-right: 1rem;
-    }
-
-    .flex {
-        min-height: 0;
-        min-width: 0;
     }
 
     @media (min-width: 640px) {
@@ -261,52 +337,274 @@
         }
     }
 
-    /* Accent glow effect */
+    /* Fix flex children collapsing */
+    .flex {
+        min-height: 0;
+        min-width: 0;
+    }
+
+    /* ── Typography helpers ── */
+    .font-display {
+        font-family: 'Sora', sans-serif;
+        font-weight: 700;
+        letter-spacing: -0.025em;
+    }
+
+    .font-mono {
+        font-family: 'Space Mono', monospace;
+    }
+
+    .text-lead {
+        font-size: var(--font-size-6);
+        line-height: 1.4;
+    }
+
+    /* ── Section labels (eyebrows) ── */
+    .section-label {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--muted-foreground);
+    }
+
+    .section-accent-bar {
+        height: 3px;
+        width: 100%;
+        background: var(--brand-yellow);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+     SERVICES SECTION — component tokens
+  ═══════════════════════════════════════════════════════════ */
+
+    /* Section wrapper */
+    .services-section {
+        background: var(--background);
+        border-top-color: var(--section-border);
+    }
+
+    /* Header layout */
+    .services-header-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    @media (min-width: 768px) {
+        .services-header-grid {
+            grid-template-columns: auto 1fr;
+            align-items: start;
+            gap: 3rem;
+        }
+    }
+
+    .services-h2 {
+        font-family: 'Sora', sans-serif;
+        font-weight: 700;
+        font-size: clamp(2.5rem, 4.5vw, 3.75rem);
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+        white-space: nowrap;
+        /* "What We Do" stays on one line */
+    }
+
+    .services-intro {
+        font-size: 1rem;
+        line-height: 1.75;
+        max-width: 52ch;
+        padding-top: 0.25rem;
+    }
+
+    /* Eyebrow / section label */
+    .section-eyebrow {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.6875rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--eyebrow-color);
+    }
+
+    .eyebrow-rule {
+        display: block;
+        flex: 1;
+        max-width: 3rem;
+        height: 1px;
+        background: currentColor;
+        opacity: 0.25;
+    }
+
+    /* Block article divider */
+    .block-article {
+        border-top: 1px solid var(--section-border);
+    }
+
+    /* Block left column typography */
+    .block-index {
+        font-family: 'Space Mono', monospace;
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: var(--block-index-color);
+        letter-spacing: 0.06em;
+    }
+
+    .block-index-rule {
+        display: block;
+        width: 1rem;
+        height: 1px;
+        background: var(--border);
+    }
+
+    .block-icon-wrap {
+        opacity: 0.75;
+    }
+
+    .block-title {
+        font-family: 'Sora', sans-serif;
+        font-weight: 700;
+        font-size: 1.25rem;
+        line-height: 1.3;
+        letter-spacing: -0.02em;
+    }
+
+    @media (min-width: 768px) {
+        .block-title {
+            font-size: 1.375rem;
+        }
+    }
+
+    .block-tagline {
+        font-size: 0.9rem;
+        line-height: 1.7;
+        max-width: 38ch;
+    }
+
+    /* ── Service tiles ── */
+    .bg-tile {
+        background: var(--tile-bg);
+    }
+
+    .bg-tile-hover {
+        background: var(--tile-bg-hover);
+    }
+
+    .border-tile-border {
+        border-color: var(--tile-border);
+    }
+
+    .border-tile-border-hover {
+        border-color: var(--tile-border-hover);
+    }
+
+    .service-tile {
+        background: var(--tile-bg);
+        border-color: var(--tile-border);
+        transition: background 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+    }
+
+    .service-tile:hover {
+        background: var(--tile-bg-hover);
+        border-color: var(--tile-border-hover);
+        box-shadow: var(--shadow-card);
+    }
+
+    /* Icon box inside tiles */
+    .icon-box {
+        background: var(--icon-box-bg);
+    }
+
+    .icon-box-icon {
+        color: var(--icon-box-color);
+    }
+
+    .service-tile:hover .icon-box {
+        background: var(--icon-box-bg-hover);
+    }
+
+    .service-tile:hover .icon-box-icon {
+        color: var(--icon-box-color-hover);
+    }
+
+    /* ── Pull quote block ── */
+    .pull-quote {
+        background: var(--quote-bg);
+        border: 1px solid var(--quote-border);
+        padding: 2.5rem 2rem;
+    }
+
+    @media (min-width: 768px) {
+        .pull-quote {
+            padding: 3rem 3.5rem;
+        }
+    }
+
+    .pull-quote-text {
+        font-size: 1.25rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.4;
+    }
+
+    @media (min-width: 768px) {
+        .pull-quote-text {
+            font-size: 1.5rem;
+        }
+    }
+
+    .pull-quote-body {
+        font-size: 0.9375rem;
+        line-height: 1.75;
+    }
+
+    .pull-quote-footer {
+        border-top-color: var(--quote-border);
+    }
+
+    /* ── CTA button ── */
+    .footer-cta-heading {
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.25;
+    }
+
+    /* ── Accent elements ── */
     .accent-glow {
-        text-shadow: 0 0 10px rgba(153, 27, 27, 0.3);
+        text-shadow: 0 0 12px rgba(153, 27, 27, 0.25);
     }
 
     .accent-glow-yellow {
-        text-shadow: 0 0 12px rgba(245, 158, 11, 0.35);
+        text-shadow: 0 0 14px rgba(245, 158, 11, 0.3);
     }
 
-    .accent-glow-taupe {
-        text-shadow: 0 0 10px rgba(120, 113, 108, 0.2);
+    .icon-glow-yellow {
+        box-shadow: 0 0 18px rgba(245, 158, 11, 0.15);
     }
 
-    /* Dashed border accent */
-    .dashed-border {
-        border: 2px dashed rgba(153, 27, 27, 0.2);
-    }
-
-    .dashed-border-yellow {
-        border: 2px dashed rgba(245, 158, 11, 0.25);
-    }
-
-    /* Neumorphic soft UI shadow (dual highlight + shadow) */
+    /* ── Neumorphic ── */
     .shadow-neumorphic {
         box-shadow: var(--shadow-neumorphic);
     }
 
-    /* Font utilities */
-    .font-display {
-        font-family: 'Sora', sans-serif;
-        font-weight: 700;
-        letter-spacing: -0.02em;
+    /* ── Glass panels ── */
+    .glass-panel {
+        background: color-mix(in lch, var(--background) 72%, transparent);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
     }
 
-    .font-body {
-        font-family: 'Sora', sans-serif;
-        font-weight: 400;
+    .glass-bar {
+        background: color-mix(in lch, var(--card) 80%, transparent);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
     }
 
-    /* Lead / intro paragraph (fluid, slightly larger) */
-    .text-lead {
-        font-size: var(--font-size-6);
-        line-height: 1.35;
-    }
+    /* ═══════════════════════════════════════════════════════════
+     ANIMATIONS
+  ═══════════════════════════════════════════════════════════ */
 
-    /* Staggered appear: children fade/slide in on load (Option A: @starting-style) */
+    /* Staggered appear on load */
     .appear {
         --appear-speed: 0.6s;
         --appear-offset-y: 4vh;
@@ -359,47 +657,14 @@
         }
     }
 
-    .font-mono {
-        font-family: 'Space Mono', monospace;
-    }
-
-    .section-label {
-        font-family: 'Space Mono', monospace;
-        font-size: 0.875rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: var(--muted-foreground);
-    }
-
-    .section-accent-bar {
-        height: 4px;
-        width: 100%;
-        background: var(--brand-yellow);
-    }
-
-    .icon-glow-yellow {
-        box-shadow: 0 0 20px rgba(245, 158, 11, 0.15);
-    }
-
-    /* ── Pizza spin ── */
-    @keyframes pizza-spin {
-        to {
-            transform: rotate(360deg);
-        }
-    }
-
-    .animate-pizza-spin {
-        animation: pizza-spin 20s linear infinite;
-    }
-
-    /* ── Hero code watermark ── */
+    /* Hero code watermark */
     .hero-code-animation-container {
         position: absolute;
         inset: 0;
         pointer-events: none;
         z-index: 0;
         overflow: hidden;
-        opacity: 0.12;
+        opacity: 0.10;
         contain: layout paint;
         mask-image:
             linear-gradient(to bottom, transparent 0%, white 15%, white 70%, transparent 100%),
@@ -415,8 +680,8 @@
         padding: 6rem 2rem 4rem 3rem;
         background: none;
         color: currentColor;
-        font-family: ui-monospace, "Cascadia Code", "Fira Code", monospace;
-        font-size: clamp(0.7rem, 1.3vw, 1rem);
+        font-family: ui-monospace, 'Cascadia Code', 'Fira Code', monospace;
+        font-size: clamp(0.65rem, 1.2vw, 0.95rem);
         line-height: 1.8;
         overflow: hidden;
         user-select: none;
@@ -469,7 +734,7 @@
         color: currentColor;
     }
 
-    /* ── Grid background drift ── */
+    /* Grid bg drift */
     @keyframes grid-move {
         0% {
             transform: translate(0, 0);
@@ -484,7 +749,7 @@
         animation: grid-move 20s linear infinite;
     }
 
-    /* ── Floating code particles ── */
+    /* Particle float */
     @keyframes particle-float {
 
         0%,
@@ -494,16 +759,16 @@
         }
 
         10% {
-            opacity: 0.12;
+            opacity: 0.10;
         }
 
         50% {
             transform: translateY(-10vh) rotate(180deg);
-            opacity: 0.18;
+            opacity: 0.16;
         }
 
         90% {
-            opacity: 0.08;
+            opacity: 0.06;
         }
     }
 
@@ -511,7 +776,7 @@
         animation: particle-float 15s infinite ease-in-out;
     }
 
-    /* ── Ring orbit (used by HeroBackground rings) ── */
+    /* Ring orbit */
     @keyframes ring-orbit {
         to {
             transform: rotate(360deg);
@@ -522,7 +787,6 @@
         animation: ring-orbit 30s linear infinite;
     }
 
-    /* ── Ring nodes: positioned by --angle & --radius ── */
     .ring-node {
         position: absolute;
         width: 24px;
@@ -543,7 +807,7 @@
         }
     }
 
-    /* ── Floating badge bounce ── */
+    /* Badge float */
     @keyframes badge-float {
 
         0%,
@@ -560,7 +824,18 @@
         animation: badge-float 3.5s ease-in-out infinite;
     }
 
-    /* ── Hero cursor blink ── */
+    /* Pizza spin */
+    @keyframes pizza-spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .animate-pizza-spin {
+        animation: pizza-spin 20s linear infinite;
+    }
+
+    /* Hero cursor */
     @keyframes cursor-blink {
 
         0%,
@@ -578,38 +853,7 @@
         animation: cursor-blink 1s step-end infinite;
     }
 
-    /* ── Scroll mouse indicator ── */
-    .scroll-mouse {
-        width: 24px;
-        height: 38px;
-        border: 2px solid var(--border);
-        border-radius: 12px;
-        display: flex;
-        justify-content: center;
-        padding-top: 6px;
-    }
-
-    .scroll-wheel {
-        width: 3px;
-        height: 8px;
-        background: var(--brand-yellow);
-        border-radius: 2px;
-        animation: scroll-wheel 2s infinite;
-    }
-
-    @keyframes scroll-wheel {
-        0% {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        100% {
-            transform: translateY(16px);
-            opacity: 0;
-        }
-    }
-
-    /* ── Hero entrance animations ── */
+    /* Hero entrance */
     @keyframes hero-fade-in {
         from {
             opacity: 0;
@@ -665,109 +909,80 @@
         animation: hero-pop-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     }
 
-    /* ── Glass panels ── */
-    .glass-panel {
-        background: color-mix(in lch, var(--background) 72%, transparent);
-        backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
+    /* Scroll mouse indicator */
+    .scroll-mouse {
+        width: 24px;
+        height: 38px;
+        border: 2px solid var(--border);
+        border-radius: 12px;
+        display: flex;
+        justify-content: center;
+        padding-top: 6px;
     }
 
-    .glass-bar {
-        background: color-mix(in lch, var(--card) 80%, transparent);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
+    .scroll-wheel {
+        width: 3px;
+        height: 8px;
+        background: var(--brand-yellow);
+        border-radius: 2px;
+        animation: scroll-wheel 2s infinite;
+    }
+
+    @keyframes scroll-wheel {
+        0% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        100% {
+            transform: translateY(16px);
+            opacity: 0;
+        }
+    }
+
+    /* Misc keyframes */
+    @keyframes typing {
+        from {
+            width: 0;
+            opacity: 1;
+        }
+
+        to {
+            width: 100%;
+            opacity: 1;
+        }
+    }
+
+    @keyframes blink {
+
+        from,
+        to {
+            border-color: transparent
+        }
+
+        50% {
+            border-color: currentColor;
+        }
+    }
+
+    @keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(8px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 }
 
-
-
-.dark {
-    /* Dark Mode Palette overrides */
-    --background: #1c1917;
-    --secondbackground: #1d1d1d;
-    /* Stone 900 */
-    --foreground: #f5f5f4;
-    /* Stone 100 */
-    --card: #292524;
-    /* Stone 800 */
-    --card-foreground: #fafaf9;
-    /* Stone 50 */
-    --popover: #292524;
-    --popover-foreground: #fafaf9;
-    --secondary: #44403c;
-    /* Stone 700 */
-    --secondary-foreground: #a8a29e;
-    /* Stone 400 */
-    --muted: #44403c;
-    --muted-foreground: #a8a29e;
-    --border: #44403c;
-    --input: #292524;
-
-    /* Retaining your brand colors */
-    --primary: #991B1B;
-    --primary-foreground: #FAFAF9;
-    --sidebar-primary: #991B1B;
-    --sidebar-primary-foreground: #FAFAF9;
-    --brand-yellow: #f59e0b;
-    --ring: #991B1B;
-
-    --sidebar: #1c1917;
-    --sidebar-foreground: #f5f5f4;
-    --sidebar-accent: #991B1B;
-    --sidebar-accent-foreground: #FAFAF9;
-    --sidebar-border: #44403c;
-    --sidebar-ring: #991B1B;
-
-    /* Neumorphic adjustments for Dark Mode */
-    --shadow-neumorphic-light: #292524;
-    --shadow-neumorphic-dark: #0c0a09;
-
-
-}
-
+/* ── White-mix utility ── */
 @utility bg-white-mix {
     background-color: rgba(255, 255, 255, 0.9);
-    /* Older browser fallback */
 
     @supports (color: color-mix(in lab, red, red)) {
         background-color: color-mix(in oklab, var(--color-foreground) 10%, transparent);
-        /* Note: I swapped var(--color-white) with var(--color-foreground) scaled to 10% 
-       since your dark mode uses a dark layout, or you can hardcode "#ffffff" there! */
-    }
-}
-
-@keyframes typing {
-    from {
-        width: 0;
-        opacity: 1;
-    }
-
-    to {
-        width: 100%;
-        opacity: 1;
-    }
-}
-
-@keyframes blink {
-
-    from,
-    to {
-        border-color: transparent
-    }
-
-    50% {
-        border-color: currentColor;
-    }
-}
-
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(8px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
     }
 }

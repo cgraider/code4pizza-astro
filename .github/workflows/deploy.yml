@@ -1,0 +1,56 @@
+name: Secure Deploy Astro (Static) to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Install Dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Build Static Site
+        run: pnpm run build
+
+      - name: Deploy Static Files via Native SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          
+          ssh-keyscan -p 22 ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
+
+          # Package ONLY the dist folder contents
+          cd dist
+          tar -czf ../deploy_assets.tar.gz .
+          cd ..
+          
+          scp -i ~/.ssh/id_deploy deploy_assets.tar.gz ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/var/www/code4pizza/prod/
+
+          ssh -i ~/.ssh/id_deploy ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
+            cd /var/www/code4pizza/prod
+            
+            # Clear old static HTML files to avoid orphaned assets
+            rm -rf *
+            
+            tar -xzf deploy_assets.tar.gz
+            rm deploy_assets.tar.gz
+          EOF
+
+          rm -f ~/.ssh/id_deploy

@@ -13,7 +13,6 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # FIXED: Added explicit pnpm version 9 to bypass the self-installer error
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
@@ -31,7 +30,6 @@ jobs:
       - name: Build Static Site
         run: pnpm run build
 
-      # FIXED: Replaced the '<< EOF' block with a linear command string to prevent tar missing file sync issues
       - name: Deploy Static Files via Native SSH
         run: |
           mkdir -p ~/.ssh
@@ -45,11 +43,11 @@ jobs:
           tar -czf ../deploy_assets.tar.gz .
           cd ..
           
-          # 2. Securely copy the bundle
-          scp -i ~/.ssh/id_deploy deploy_assets.tar.gz ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/var/www/code4pizza/prod/
+          # 2. Upload the file to the parent folder temporarily so it doesn't get wiped out
+          scp -i ~/.ssh/id_deploy deploy_assets.tar.gz ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/var/www/code4pizza/
 
-          # 3. Target remote extraction inline so execution waits for scp file availability
-          ssh -i ~/.ssh/id_deploy ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "cd /var/www/code4pizza/prod && rm -rf * && tar -xzf deploy_assets.tar.gz && rm -f deploy_assets.tar.gz"
+          # 3. Clean the directory, extract the files from the parent directory, and clean up safely
+          ssh -i ~/.ssh/id_deploy ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "cd /var/www/code4pizza/prod && rm -rf * && tar -xzf ../deploy_assets.tar.gz && rm -f ../deploy_assets.tar.gz"
 
           # 4. Clean up private keys from the runner
           rm -f ~/.ssh/id_deploy

@@ -248,8 +248,11 @@
         --header-offset: 5.5rem;
     }
 
-    html {
+    html,
+    body {
         scroll-behavior: auto;
+        overflow-x: hidden;
+        /* fixed/absolute elements must not widen the scroll area */
     }
 
     [id="services"],

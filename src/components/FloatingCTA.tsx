@@ -11,7 +11,7 @@ export default function FloatingCTA() {
 
   const [shouldBeOpen, setShouldBeOpen] = useState(false);
 
-  // 1. Unified Matrix Scroll Reader (Bypasses window vs smooth-scroll proxy conflicts)
+  // 1. Unified Matrix Scroll Reader
   useEffect(() => {
     const checkScrollPosition = () => {
       const scrollContainer = document.getElementById('content') || document.querySelector('main');
@@ -27,7 +27,6 @@ export default function FloatingCTA() {
 
       const threshold = window.innerHeight * 0.7;
 
-      // Absolute safety clamp for the top of the viewport
       if (currentScroll < 20) {
         setShouldBeOpen(false);
       } else {
@@ -48,17 +47,10 @@ export default function FloatingCTA() {
 
     if (shouldBeOpen) {
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-      // Slide cleanly up into the viewport from the bottom fold
-      tl.fromTo(bar,
-        { y: 120, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.4 }
-      );
-
+      tl.fromTo(bar, { y: 120, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4 });
       if (innerRef.current) {
         tl.fromTo(innerRef.current, { opacity: 0 }, { opacity: 1, duration: 0.2 }, '-=0.15');
       }
-
       const staggerEls = [textRef.current, btnRef.current].filter(Boolean);
       if (staggerEls.length) {
         tl.fromTo(staggerEls,
@@ -69,38 +61,31 @@ export default function FloatingCTA() {
       }
     } else {
       const tl = gsap.timeline({ defaults: { ease: 'power2.in' } });
-
       if (innerRef.current) {
         tl.to(innerRef.current, { opacity: 0, duration: 0.15 }, 0);
       }
-
-      // Drop the fully expanded bar directly down past the boundary
-      tl.to(bar, {
-        y: 120,
-        opacity: 0,
-        duration: 0.3,
-      }, '-=0.05');
+      tl.to(bar, { y: 120, opacity: 0, duration: 0.3 }, '-=0.05');
     }
   }, [shouldBeOpen]);
 
   return (
     <div
       ref={barRef}
-      className="fixed bottom-5 left-1/2 -translate-x-1/2 z-40 glass-bar border border-border/60 rounded-2xl overflow-hidden p-[12px_16px]"
+      className="hidden sm:block fixed bottom-5 left-1/2 -translate-x-1/2 z-40 glass-bar border border-border/60 rounded-2xl overflow-hidden p-[12px_16px]"
       role="banner"
       aria-label="Call to action"
       style={{
         boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
         willChange: 'transform, opacity',
-        width: 'min(96%, 540px)', // Fixed width constraints protect the layout boundaries
+        width: 'min(96%, 540px)',
         opacity: 0,
-        y: 120
+        transform: 'translateY(120px)',
       }}
     >
       <div ref={innerRef} className="flex items-center justify-between gap-3 opacity-0">
         <div className="flex items-center gap-3 min-w-0">
           <LogoBrand size={28} animate={false} className="shrink-0" />
-          <p ref={textRef} className="text-sm text-foreground/90 font-medium truncate hidden sm:block whitespace-nowrap">
+          <p ref={textRef} className="text-sm text-foreground/90 font-medium truncate whitespace-nowrap">
             Ready to build something great?
           </p>
         </div>

@@ -28,26 +28,42 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Build Static Site
+        # Inject your Astro environment variables right here so they compile into the static files
+        env:
+          PUBLIC_WEB3FORMS_KEY: ${{ secrets.PUBLIC_WEB3FORMS_KEY }}
+          # Add any other build-time vars here (e.g., PUBLIC_API_URL)
         run: pnpm run build
 
       - name: Deploy Static Files via Native SSH
+        env:
+          SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          HOST: ${{ secrets.VPS_HOST }}
+          USER: ${{ secrets.VPS_USER }}
         run: |
+          # Setup SSH directory securely
           mkdir -p ~/.ssh
-          echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_deploy
+          chmod 700 ~/.ssh
+          
+          # Write the private key
+          echo "$SSH_KEY" > ~/.ssh/id_deploy
           chmod 600 ~/.ssh/id_deploy
           
-          ssh-keyscan -p 22 ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
+          # Scan host keys to prevent MITM prompts
+          ssh-keyscan -H "$HOST" >> ~/.ssh/known_hosts
 
           # 1. Package ONLY the dist folder contents
           cd dist
           tar -czf ../deploy_assets.tar.gz .
           cd ..
           
-          # 2. Upload the file to the parent folder temporarily so it doesn't get wiped out
-          scp -i ~/.ssh/id_deploy deploy_assets.tar.gz ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/var/www/code4pizza/
+          # 2. Upload the file to the parent folder temporarily
+          scp -i ~/.ssh/id_deploy deploy_assets.tar.gz $USER@$HOST:/var/www/code4pizza/
 
-          # 3. Clean the directory, extract the files from the parent directory, and clean up safely
-          ssh -i ~/.ssh/id_deploy ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "cd /var/www/code4pizza/prod && rm -rf * && tar -xzf ../deploy_assets.tar.gz && rm -f ../deploy_assets.tar.gz"
+          # 3. Clean target, extract, and clean archive on remote host
+          ssh -i ~/.ssh/id_deploy $USER@$HOST "cd /var/www/code4pizza/prod && rm -rf * && tar -xzf ../deploy_assets.tar.gz && rm -f ../deploy_assets.tar.gz"
 
-          # 4. Clean up private keys from the runner
+      - name: Post-Deployment Cleanup
+        # This step always runs even if the deployment script fails midway, avoiding orphaned keys
+        if: always()
+        run: |
           rm -f ~/.ssh/id_deploy

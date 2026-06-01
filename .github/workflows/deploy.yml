@@ -31,6 +31,7 @@ jobs:
       - name: Build Static Site
         run: pnpm run build
 
+      # FIXED: Replaced the '<< EOF' block with a linear command string to prevent tar missing file sync issues
       - name: Deploy Static Files via Native SSH
         run: |
           mkdir -p ~/.ssh
@@ -39,21 +40,16 @@ jobs:
           
           ssh-keyscan -p 22 ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
 
-          # Package ONLY the dist folder contents
+          # 1. Package ONLY the dist folder contents
           cd dist
           tar -czf ../deploy_assets.tar.gz .
           cd ..
           
+          # 2. Securely copy the bundle
           scp -i ~/.ssh/id_deploy deploy_assets.tar.gz ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/var/www/code4pizza/prod/
 
-          ssh -i ~/.ssh/id_deploy ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
-            cd /var/www/code4pizza/prod
-            
-            # Clear old static HTML files to avoid orphaned assets
-            rm -rf *
-            
-            tar -xzf deploy_assets.tar.gz
-            rm deploy_assets.tar.gz
-          EOF
+          # 3. Target remote extraction inline so execution waits for scp file availability
+          ssh -i ~/.ssh/id_deploy ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "cd /var/www/code4pizza/prod && rm -rf * && tar -xzf deploy_assets.tar.gz && rm -f deploy_assets.tar.gz"
 
+          # 4. Clean up private keys from the runner
           rm -f ~/.ssh/id_deploy

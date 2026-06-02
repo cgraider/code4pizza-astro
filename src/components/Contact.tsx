@@ -27,7 +27,7 @@ export default function Contact() {
     const ctx = gsap.context(() => {
       if (leftRef.current) {
         gsap.fromTo(leftRef.current,
-          { opacity: 0, x: -30 },
+          { opacity: 0, x: 30 }, // Positive translation vector for RTL slide-in animation flow
           {
             opacity: 1, x: 0, ease: 'none',
             scrollTrigger: { trigger: sectionRef.current, start: 'top 80%', end: 'top 45%', scrub: 0.5 }
@@ -35,7 +35,7 @@ export default function Contact() {
       }
       if (rightRef.current) {
         gsap.fromTo(rightRef.current,
-          { opacity: 0, x: 30 },
+          { opacity: 0, x: -30 }, // Negative translation vector for RTL slide-in animation flow
           {
             opacity: 1, x: 0, ease: 'none',
             scrollTrigger: { trigger: sectionRef.current, start: 'top 75%', end: 'top 40%', scrub: 0.5 }
@@ -45,21 +45,17 @@ export default function Contact() {
     return () => ctx.revert();
   }, []);
 
-  // Formspree / Web3Forms Form Submission Handler
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus('submitting');
 
     const formData = new FormData(e.currentTarget);
-
-    // Injects Astro environment build variable securely on build time
     const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY;
     if (accessKey) {
       formData.append("access_key", accessKey);
     }
 
     try {
-      // Direct post to Web3Forms API endpoint (Or swap with your custom Formspree URL)
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         body: formData
@@ -69,7 +65,7 @@ export default function Contact() {
 
       if (data.success || response.ok) {
         setStatus('success');
-        (e.target as HTMLFormElement).reset(); // Clear form inputs on success
+        (e.target as HTMLFormElement).reset();
       } else {
         setStatus('error');
       }
@@ -79,22 +75,24 @@ export default function Contact() {
   };
 
   return (
-    <section id="contacts" ref={sectionRef} className="py-20 md:py-32 bg-card border-t border-border">
+    <section id="contacts" ref={sectionRef} className="py-20 md:py-32 bg-card border-t border-border text-right">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+          {/* Info Side Area */}
           <div ref={leftRef}>
-            <p className="section-label mb-3 text-sm font-mono text-primary uppercase tracking-wider">Contact</p>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">START A PROJECT</h2>
+            <p className="section-label mb-3 text-sm font-mono text-primary uppercase tracking-wider">ارتباط با ما</p>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">آغاز یک پروژه جدید</h2>
             <p className="text-lg text-foreground/80 mb-8 leading-relaxed">
-              Tell us what you're building. We'll get back quickly and work together to shape the right technical strategy—no corporate fluff, just a clear path forward.
+              از آنچه در ذهن دارید و می‌خواهید بسازید بگویید. ما به‌سرعت پاسخ می‌دهیم تا استراتژی فنی مناسب را با هم شکل دهیم؛ بدون تعارفات اداری، فقط یک مسیر روشن برای حرکت به جلو.
             </p>
 
             <div className="space-y-6 mb-10">
               <div className="flex items-start gap-4">
                 <Mail className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                 <div>
-                  <p className="font-mono text-sm text-foreground/60 mb-1">Email</p>
-                  <a href="mailto:info@code4pizza.com" className="text-foreground hover:text-primary transition-colors font-medium">
+                  <p className="text-xs text-foreground/60 mb-1">پست الکترونیکی</p>
+                  <a href="mailto:info@code4pizza.com" className="text-foreground hover:text-primary transition-colors font-medium font-mono">
                     info@code4pizza.com
                   </a>
                 </div>
@@ -102,52 +100,53 @@ export default function Contact() {
               <div className="flex items-start gap-4">
                 <MapPin className="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                 <div>
-                  <p className="font-mono text-sm text-foreground/60 mb-1">We work globally</p>
-                  <p className="text-foreground font-medium">Remote-first</p>
+                  <p className="text-xs text-foreground/60 mb-1">محدوده فعالیت</p>
+                  <p className="text-foreground font-medium">همکاری بین‌المللی — ریموت‌فرست</p>
                 </div>
               </div>
             </div>
 
             <div className="space-y-3">
-              <a href="#services" className="block text-foreground/70 hover:text-primary transition-colors font-mono text-sm">
-                &rarr; What we do
+              <a href="#services" className="block text-foreground/70 hover:text-primary transition-colors text-sm">
+                ← خدمات و توانمندی‌ها
               </a>
-              <a href="#projects" className="block text-foreground/70 hover:text-primary transition-colors font-mono text-sm">
-                &rarr; Our work
+              <a href="#projects" className="block text-foreground/70 hover:text-primary transition-colors text-sm">
+                ← نمونه کارهای ما
               </a>
             </div>
           </div>
 
+          {/* Interactive Input Card Container */}
           <div ref={rightRef} className="bg-background rounded-lg p-8 border border-border shadow-neumorphic">
-            <h3 className="text-2xl font-bold mb-6 tracking-tight">TELL US ABOUT YOUR PROJECT</h3>
+            <h3 className="text-2xl font-bold mb-6 tracking-tight">مشخصات پروژه خود را بنویسید</h3>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label className="block text-sm font-mono text-foreground/70 mb-2">Name</label>
+                <label className="block text-sm text-foreground/70 mb-2">نام شما</label>
                 <input
                   type="text"
                   name="name"
                   required
-                  placeholder="Your name"
+                  placeholder="مثال: علی علوی"
                   className="w-full px-4 py-3 bg-card border border-border rounded-lg text-foreground placeholder-foreground/40 focus:outline-none focus:border-primary transition-colors"
                 />
               </div>
               <div>
-                <label className="block text-sm font-mono text-foreground/70 mb-2">Email or Phone</label>
+                <label className="block text-sm text-foreground/70 mb-2">ایمیل یا شماره تماس</label>
                 <input
                   type="text"
                   name="contact_info"
                   required
                   placeholder="contact@example.com"
-                  className="w-full px-4 py-3 bg-card border border-border rounded-lg text-foreground placeholder-foreground/40 focus:outline-none focus:border-primary transition-colors"
+                  className="w-full px-4 py-3 bg-card border border-border rounded-lg text-foreground placeholder-foreground/40 focus:outline-none focus:border-primary transition-colors text-left font-mono"
                 />
               </div>
               <div>
-                <label className="block text-sm font-mono text-foreground/70 mb-2">Project Details</label>
+                <label className="block text-sm text-foreground/70 mb-2">جزئیات ایده و پروژه</label>
                 <textarea
                   name="details"
                   required
-                  placeholder="Tell us about your project..."
+                  placeholder="توضیحاتی درباره اهداف، ابعاد و نیازمندی‌های سیستم خود بنویسید..."
                   rows={5}
                   className="w-full px-4 py-3 bg-card border border-border rounded-lg text-foreground placeholder-foreground/40 focus:outline-none focus:border-primary transition-colors resize-none"
                 />
@@ -156,26 +155,27 @@ export default function Contact() {
               <Button
                 type="submit"
                 disabled={status === 'submitting'}
-                className="w-full bg-primary hover:bg-primary/90 text-white py-3 font-mono flex items-center justify-center gap-2"
+                className="w-full bg-primary hover:bg-primary/90 text-white py-3 flex items-center justify-center gap-2 rounded-lg font-medium"
               >
                 {status === 'submitting' && <Loader2 className="w-4 h-4 animate-spin" />}
-                {status === 'submitting' ? 'Sending...' : 'Send Request'}
+                {status === 'submitting' ? 'در حال ارسال پیام...' : 'ارسال درخواست'}
               </Button>
 
-              {/* Status Message Handling */}
+              {/* Status Handler Popups */}
               {status === 'success' && (
-                <p className="text-sm text-green-500 font-mono text-center animate-fade-in">✓ Message sent successfully! We'll reply soon.</p>
+                <p className="text-sm text-green-600 font-medium text-center animate-fade-in">✓ پیام با موفقیت ارسال شد! به‌زودی با شما تماس می‌گیریم.</p>
               )}
               {status === 'error' && (
-                <p className="text-sm text-destructive font-mono text-center animate-fade-in">✕ Delivery failed. Please email us directly.</p>
+                <p className="text-sm text-destructive font-medium text-center animate-fade-in">✕ خطا در ارسال. لطفاً مستقیماً به ایمیل ما پیام بفرستید.</p>
               )}
 
               <p className="text-xs text-foreground/50 text-center">
-                By submitting this form, you agree to our{' '}
-                <a href="#about" className="text-primary hover:underline">Privacy Policy</a>
+                با ارسال این فرم، شما با{' '}
+                <a href="#about" className="text-primary hover:underline">حریم خصوصی</a> تیم ما موافقت می‌کنید.
               </p>
             </form>
           </div>
+
         </div>
       </div>
     </section>

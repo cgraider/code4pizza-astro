@@ -38,82 +38,84 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-card border-t border-border">
+    <footer className="bg-card border-t border-border text-right">
       <div className="container py-16">
+
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          {/* Company Info */}
+
+          {/* Company Info column */}
           <div>
             <div className="flex items-center gap-2 mb-4">
               <LogoBrand size={32} animate={false} />
-              <span className="font-bold" style={{ fontFamily: "'Sora', sans-serif" }}>code4pizza</span>
+              <span className="font-bold">code4pizza</span>
             </div>
-            <p className="text-sm text-foreground/60 mb-6" style={{ fontFamily: "'Sora', sans-serif" }}>
-              We are a team of researchers and engineers who love solving hard problems and seeing our clients succeed. Let's build something great together.
+            <p className="text-sm text-foreground/60 mb-6">
+              ما تیمی از مهندسان و پژوهشگران هستیم که به حل چالش‌های پیچیده فنی و کمک به توسعه سیستم‌های نرم‌افزاری کارآمد عشق می‌ورزیم. بیایید با هم ایده شما را به واقعیت تبدیل کنیم.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="text-foreground/60 hover:text-primary transition-colors" aria-label="Telegram">
+              <a href="#" className="text-foreground/60 hover:text-primary transition-colors" aria-label="تلگرام">
                 <TelegramIcon />
               </a>
-              <a href="#" className="text-foreground/60 hover:text-primary transition-colors" aria-label="LinkedIn">
+              <a href="#" className="text-foreground/60 hover:text-primary transition-colors" aria-label="لینکدین">
                 <LinkedInIcon />
               </a>
-              <a href="#" className="text-foreground/60 hover:text-primary transition-colors" aria-label="WhatsApp">
+              <a href="#" className="text-foreground/60 hover:text-primary transition-colors" aria-label="واتس‌اپ">
                 <WhatsAppIcon />
               </a>
-              <a href="#" className="text-foreground/60 hover:text-primary transition-colors" aria-label="Discord">
+              <a href="#" className="text-foreground/60 hover:text-primary transition-colors" aria-label="دیسکورد">
                 <DiscordIcon />
               </a>
             </div>
           </div>
 
-          {/* Services */}
+          {/* Services Links column */}
           <div>
-            <h4 className="font-bold mb-4" style={{ fontFamily: "'Sora', sans-serif" }}>Services</h4>
+            <h4 className="font-bold mb-4">خدمات تخصصی</h4>
             <ul className="space-y-3 text-sm">
-              <li><a href="#services" className="text-foreground/60 hover:text-primary transition-colors">Building Software That Grows With You</a></li>
-              <li><a href="#services" className="text-foreground/60 hover:text-primary transition-colors">AI That Actually Works For You</a></li>
-              <li><a href="#services" className="text-foreground/60 hover:text-primary transition-colors">Your Digital Storefront & Beyond</a></li>
-              <li><a href="#services" className="text-foreground/60 hover:text-primary transition-colors">AR, VR & WebGL</a></li>
-              <li><a href="#services" className="text-foreground/60 hover:text-primary transition-colors">Bots & Automation That Scale</a></li>
-              <li><a href="#services" className="text-foreground/60 hover:text-primary transition-colors">Custom LMS on Moodle</a></li>
+              <li><a href="#services" className="text-foreground/60 hover:text-primary transition-colors">توسعه نرم‌افزارهای مقیاس‌پذیر</a></li>
+              <li><a href="#services" className="text-foreground/60 hover:text-primary transition-colors">هوش مصنوعی و عامل‌های خودمختار</a></li>
+              <li><a href="#services" className="text-foreground/60 hover:text-primary transition-colors">طراحی فروشگاه و سکوهای وردپرس</a></li>
+              <li><a href="#services" className="text-foreground/60 hover:text-primary transition-colors">پیاده‌سازی رندرهای سه‌بعدی و AR/VR</a></li>
+              <li><a href="#services" className="text-foreground/60 hover:text-primary transition-colors">اتوماسیون صنعتی و ربات‌های تلگرام</a></li>
+              <li><a href="#services" className="text-foreground/60 hover:text-primary transition-colors">راه‌اندازی LMS اختصاصی روی مودل</a></li>
             </ul>
           </div>
 
-          {/* Company */}
+          {/* Company Links column */}
           <div>
-            <h4 className="font-bold mb-4" style={{ fontFamily: "'Sora', sans-serif" }}>Company</h4>
+            <h4 className="font-bold mb-4">سازمان ما</h4>
             <ul className="space-y-3 text-sm">
-              <li><a href="#about" className="text-foreground/60 hover:text-primary transition-colors">About Us</a></li>
-              <li><a href="#about" className="text-foreground/60 hover:text-primary transition-colors">Our History</a></li>
-              <li><a href="#projects" className="text-foreground/60 hover:text-primary transition-colors">Our Work</a></li>
-              <li><a href="#contacts" className="text-foreground/60 hover:text-primary transition-colors">Get in Touch</a></li>
+              <li><a href="#about" className="text-foreground/60 hover:text-primary transition-colors">درباره ما</a></li>
+              <li><a href="#about" className="text-foreground/60 hover:text-primary transition-colors">پیشینه و ارزش‌ها</a></li>
+              <li><a href="#projects" className="text-foreground/60 hover:text-primary transition-colors">نمونه کارهای شاخص</a></li>
+              <li><a href="#contacts" className="text-foreground/60 hover:text-primary transition-colors">ارتباط مستقیم</a></li>
             </ul>
           </div>
 
-          {/* Legal */}
+          {/* Legal Links column */}
           <div>
-            <h4 className="font-bold mb-4" style={{ fontFamily: "'Sora', sans-serif" }}>Legal</h4>
+            <h4 className="font-bold mb-4">مباحث حقوقی</h4>
             <ul className="space-y-3 text-sm">
-              <li><a href="#contacts" className="text-foreground/60 hover:text-primary transition-colors">Contact</a></li>
+              <li><a href="#contacts" className="text-foreground/60 hover:text-primary transition-colors">قوانین و حریم خصوصی</a></li>
             </ul>
           </div>
         </div>
 
-        {/* Divider */}
+        {/* Divider line */}
         <div className="border-t border-border my-8"></div>
 
-        {/* Bottom Footer */}
+        {/* Bottom Bar items grouped dynamically for clean RTL reading flow */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-foreground/60 font-mono">
+          <p className="text-sm text-foreground/60 font-mono" style={{ direction: 'ltr' }}>
             © {currentYear} code4pizza. All rights reserved.
           </p>
           <div className="flex items-center gap-6 text-sm">
-            <a href="mailto:info@code4pizza.com" className="text-foreground/60 hover:text-primary transition-colors">
+            <a href="mailto:info@code4pizza.com" className="text-foreground/60 hover:text-primary transition-colors font-mono">
               info@code4pizza.com
             </a>
             <a href="#contacts" className="text-foreground/60 hover:text-primary transition-colors">
-              Contact
+              تماس با تیم ما
             </a>
           </div>
         </div>

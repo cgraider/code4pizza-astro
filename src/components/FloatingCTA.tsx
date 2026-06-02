@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
-import { ArrowRight } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import LogoBrand from '@/components/LogoBrand';
 
 export default function FloatingCTA() {
@@ -11,7 +11,6 @@ export default function FloatingCTA() {
 
   const [shouldBeOpen, setShouldBeOpen] = useState(false);
 
-  // 1. Unified Matrix Scroll Reader
   useEffect(() => {
     const checkScrollPosition = () => {
       const scrollContainer = document.getElementById('content') || document.querySelector('main');
@@ -38,7 +37,6 @@ export default function FloatingCTA() {
     return () => clearInterval(pollInterval);
   }, []);
 
-  // 2. Elevator Slide Motion Engine
   useEffect(() => {
     const bar = barRef.current;
     if (!bar) return;
@@ -71,32 +69,32 @@ export default function FloatingCTA() {
   return (
     <div
       ref={barRef}
-      className="hidden sm:block fixed bottom-5 left-1/2 -translate-x-1/2 z-40 glass-bar border border-border/60 rounded-2xl overflow-hidden p-[12px_16px]"
+      className="hidden sm:block fixed bottom-5 left-1/2 -translate-x-1/2 z-40 glass-bar border border-border/60 rounded-2xl overflow-hidden p-[12px_16px] text-right"
       role="banner"
-      aria-label="Call to action"
+      aria-label="پیشنهاد شروع پروژه"
       style={{
         boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
         willChange: 'transform, opacity',
         width: 'min(96%, 540px)',
         opacity: 0,
-        transform: 'translateY(120px)',
+        transform: 'translateX(-50%) translateY(120px)', // Safeguards horizontal alignment on center midpoint tracking
       }}
     >
       <div ref={innerRef} className="flex items-center justify-between gap-3 opacity-0">
-        <div className="flex items-center gap-3 min-w-0">
-          <LogoBrand size={28} animate={false} className="shrink-0" />
-          <p ref={textRef} className="text-sm text-foreground/90 font-medium truncate whitespace-nowrap">
-            Ready to build something great?
-          </p>
-        </div>
         <a
           ref={btnRef}
           href="#contacts"
           className="shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20 whitespace-nowrap"
         >
-          Start a project
-          <ArrowRight className="w-4 h-4" />
+          شروع یک پروژه
+          <ArrowLeft className="w-4 h-4" />
         </a>
+        <div className="flex items-center gap-3 min-w-0">
+          <p ref={textRef} className="text-sm text-foreground/90 font-medium truncate whitespace-nowrap">
+            آماده‌اید یک سیستم بزرگ بسازیم؟
+          </p>
+          <LogoBrand size={28} animate={false} className="shrink-0" />
+        </div>
       </div>
     </div>
   );

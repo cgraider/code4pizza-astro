@@ -76,7 +76,7 @@ export default function RotatingPizza({ className = '', size = 160 }: { classNam
         {/* Inner circle: code background + clip */}
         <g clipPath={`url(#${uid}-inner-clip)`}>
           <circle cx={cx} cy={cy} r={rInner} fill={`url(#${uid}-code-bg)`} />
-          {/* Code lines */}
+          {/* Code lines explicit LTR enforcement inside SVG text tags */}
           {codeLines.map((line, i) => (
             <text
               key={i}
@@ -88,6 +88,7 @@ export default function RotatingPizza({ className = '', size = 160 }: { classNam
               fontFamily="ui-monospace, monospace"
               fontWeight={line.type === 'keyword' ? 600 : 400}
               opacity={line.type === 'comment' ? 0.85 : 1}
+              style={{ direction: 'ltr', unicodeBidi: 'bidi-override' }}
             >
               {line.text}
             </text>

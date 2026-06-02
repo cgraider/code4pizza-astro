@@ -62,11 +62,11 @@
 
     /* Surfaces — warm stone scale */
     --background: #FAFAF9;
-    /* page bg   – stone 50  */
+    /* page bg – stone 50  */
     --foreground: #1C1917;
     /* body text – stone 900 */
     --card: #F5F5F4;
-    /* elevated  – stone 100 */
+    /* elevated – stone 100 */
     --card-foreground: #1C1917;
     --popover: #FFFFFF;
     --popover-foreground: #1C1917;
@@ -79,7 +79,7 @@
     --muted: #E7E5E4;
     /* stone 200 */
     --muted-foreground: #78716C;
-    /* stone 500 — readable, not washed out */
+    /* stone 500 */
     --accent: #991B1B;
     --accent-foreground: #FAFAF9;
 
@@ -89,7 +89,7 @@
 
     /* Borders & inputs */
     --border: #E7E5E4;
-    /* stone 200 — subtle, not heavy */
+    /* stone 200 */
     --input: #F5F5F4;
     --ring: #991B1B;
 
@@ -119,88 +119,63 @@
 
     /* ── Services section tokens ── */
     --section-border: #EDEAE8;
-    /* very soft divider — just perceptible */
     --tile-bg: #FFFFFF;
-    /* tile surface – pure white lifts off background */
     --tile-bg-hover: #FDF8F8;
-    /* faint warm tint on hover */
     --tile-border: #EDEAE8;
-    /* resting: whisper-thin */
     --tile-border-hover: #D9C5C5;
-    /* hover: muted dusty rose */
     --icon-box-bg: #F5F0F0;
-    /* warm blush box */
     --icon-box-color: #7F1D1D;
-    /* dark crimson icon */
     --icon-box-bg-hover: #FCEAEA;
     --icon-box-color-hover: #991B1B;
     --quote-bg: #FDF9F6;
-    /* warm off-white for pull-quote */
     --quote-border: #E7E5E4;
     --block-index-color: #A8A29E;
-    /* stone 400 — faint numbering */
     --eyebrow-color: #991B1B;
 
-    /* Fluid typography */
+    /* Fluid typography rules modified dynamically for Farsi flow */
     --font-size-4: clamp(1rem, 1rem + 0.13vw, 1.25rem);
-    --font-size-5: clamp(1.25rem, 1.25rem + 0.16vw, 1.563rem);
-    --font-size-6: clamp(1.563rem, 1.563rem+ 0.2vw, 1.953rem);
-    --font-size-7: clamp(1.953rem, 1.953rem+ 0.24vw, 2.441rem);
-    --font-size-8: clamp(2.441rem, 2.441rem+ 0.31vw, 3.052rem);
-    --font-size-display: clamp(3.052rem, 3.052rem+ 0.38vw, 3.815rem);
+    --font-size-5: clamp(1.05rem, 1.05rem + 0.16vw, 1.6rem);
+    --font-size-6: clamp(1.563rem, 1.563rem + 0.2vw, 1.953rem);
+    --font-size-7: clamp(1.953rem, 1.953rem + 0.24vw, 2.441rem);
+    --font-size-8: clamp(2.441rem, 2.441rem + 0.31vw, 3.052rem);
+    --font-size-display: clamp(3.052rem, 3.052rem + 0.38vw, 3.815rem);
 }
 
 /* ───────────────────────────────
    DARK MODE
-   Strategy: darker surfaces, higher-contrast text,
-   warmer midtones (avoids the cold-blue dark mode trap).
 ─────────────────────────────── */
 .dark {
-    /* Brand stays the same */
     --primary: #991B1B;
     --primary-foreground: #FAFAF9;
     --brand-yellow: #f59e0b;
 
-    /* Surfaces — layered dark stone */
     --background: #18120F;
-    /* deepest bg  – nearly black with warm hue */
     --foreground: #F2EDE8;
-    /* body text   – warm white, not harsh #fff */
     --card: #231C19;
-    /* card layer  – 1 step lighter than bg */
     --card-foreground: #F2EDE8;
     --popover: #2A211D;
     --popover-foreground: #F2EDE8;
 
-    /* Interactive / muted */
     --secondary: #3A2E29;
-    /* subtle interactive bg */
     --secondary-foreground: #C4B5AD;
-    /* stone 300 equivalent */
     --muted: #2E2420;
     --muted-foreground: #A39388;
-    /* warm stone — readable as secondary text */
     --accent: #991B1B;
     --accent-foreground: #FAFAF9;
 
-    /* Semantic */
     --destructive: #B91C1C;
     --destructive-foreground: #FAFAF9;
 
-    /* Borders & inputs — clearly visible in dark */
     --border: #2E2320;
-    /* one step darker — less punchy against tile bg */
     --input: #231C19;
     --ring: #991B1B;
 
-    /* Charts */
     --chart-1: #B91C1C;
     --chart-2: #A39388;
     --chart-3: #3A2E29;
     --chart-4: #F2EDE8;
     --chart-5: #f59e0b;
 
-    /* Sidebar */
     --sidebar: #18120F;
     --sidebar-foreground: #F2EDE8;
     --sidebar-primary: #991B1B;
@@ -210,34 +185,23 @@
     --sidebar-border: #2E2320;
     --sidebar-ring: #991B1B;
 
-    /* Shadows */
     --shadow-card: 0 2px 12px 0 rgb(0 0 0 / 0.35), 0 1px 4px -1px rgb(0 0 0 / 0.25);
     --shadow-neumorphic: -5px -5px 10px #231C19, 5px 5px 10px #0D0908;
 
     /* ── Services section tokens (dark) ── */
     --section-border: #2A1E1A;
-    /* barely-there warm divider */
     --tile-bg: #231C19;
-    /* tile: slightly elevated from bg */
     --tile-bg-hover: #2C1F1A;
-    /* warm dark hover */
     --tile-border: #2E2320;
-    /* resting: close to tile bg, low contrast */
     --tile-border-hover: #5C2E2E;
-    /* hover: muted crimson, not harsh */
     --icon-box-bg: #2E1A1A;
-    /* subtle dark maroon icon box */
     --icon-box-color: #F87171;
-    /* lighter red — readable on dark */
     --icon-box-bg-hover: #3D2020;
     --icon-box-color-hover: #FCA5A5;
     --quote-bg: #1F1410;
-    /* deepest warm surface for pull-quote */
     --quote-border: #2A1E1A;
     --block-index-color: #5C4A42;
-    /* faint warm numbering */
     --eyebrow-color: #F87171;
-    /* lighter red for small text readability */
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -252,7 +216,6 @@
     body {
         scroll-behavior: auto;
         overflow-x: hidden;
-        /* fixed/absolute elements must not widen the scroll area */
     }
 
     [id="services"],
@@ -268,46 +231,41 @@
 
     body {
         @apply bg-background text-foreground;
-        font-family: 'Sora', sans-serif;
+        font-family: 'Vazirmatn', sans-serif;
         font-weight: 400;
         font-size: var(--font-size-5);
-        line-height: 1.45;
+        line-height: 1.6;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
 
-    /* ── Cursor: clickable elements ── */
     button:not(:disabled),
     [role="button"]:not([aria-disabled="true"]),
     [type="button"]:not(:disabled),
     [type="submit"]:not(:disabled),
-    a[href],
-    select:not(:disabled),
-    input[type="checkbox"]:not(:disabled),
-    input[type="radio"]:not(:disabled) {
+    a[href] {
         cursor: pointer;
     }
 
-    /* ── Headings ── */
     h1,
     h2,
     h3 {
-        font-family: 'Sora', sans-serif;
+        font-family: 'Vazirmatn', sans-serif;
         font-weight: 700;
-        letter-spacing: -0.025em;
-        line-height: 1.15;
+        letter-spacing: normal;
+        line-height: 1.25;
     }
 
     h1 {
-        font-size: clamp(2.5rem, 5vw, 4.5rem);
+        font-size: clamp(2.2rem, 4.5vw, 4rem);
     }
 
     h2 {
-        font-size: clamp(1.875rem, 3.5vw, 3rem);
+        font-size: clamp(1.7rem, 3.2vw, 2.75rem);
     }
 
     h3 {
-        font-size: clamp(1.25rem, 2vw, 1.875rem);
+        font-size: clamp(1.2rem, 1.8vw, 1.75rem);
     }
 }
 
@@ -315,8 +273,6 @@
    COMPONENT STYLES
 ═══════════════════════════════════════════════════════════════ */
 @layer components {
-
-    /* ── Layout ── */
     .container {
         width: 100%;
         margin-left: auto;
@@ -340,29 +296,26 @@
         }
     }
 
-    /* Fix flex children collapsing */
     .flex {
         min-height: 0;
         min-width: 0;
     }
 
-    /* ── Typography helpers ── */
-    .font-display {
-        font-family: 'Sora', sans-serif;
-        font-weight: 700;
-        letter-spacing: -0.025em;
+    .font-persian {
+        font-family: 'Vazirmatn', sans-serif;
     }
 
     .font-mono {
         font-family: 'Space Mono', monospace;
+        direction: ltr !important;
+        text-align: left !important;
     }
 
     .text-lead {
         font-size: var(--font-size-6);
-        line-height: 1.4;
+        line-height: 1.5;
     }
 
-    /* ── Section labels (eyebrows) ── */
     .section-label {
         font-family: 'Space Mono', monospace;
         font-size: 0.75rem;
@@ -371,23 +324,27 @@
         color: var(--muted-foreground);
     }
 
+    /* Keep code overlays and terminal syntax windows explicitly left-to-right */
+    pre,
+    code,
+    .hero-code-animation-container,
+    .hero-code-animation {
+        direction: ltr !important;
+        text-align: left !important;
+    }
+
     .section-accent-bar {
         height: 3px;
         width: 100%;
         background: var(--brand-yellow);
     }
 
-    /* ═══════════════════════════════════════════════════════════
-     SERVICES SECTION — component tokens
-  ═══════════════════════════════════════════════════════════ */
-
-    /* Section wrapper */
+    /* Services Section Custom Rules */
     .services-section {
         background: var(--background);
         border-top-color: var(--section-border);
     }
 
-    /* Header layout */
     .services-header-grid {
         display: grid;
         grid-template-columns: 1fr;
@@ -403,29 +360,24 @@
     }
 
     .services-h2 {
-        font-family: 'Sora', sans-serif;
-        font-weight: 700;
-        font-size: clamp(2.5rem, 4.5vw, 3.75rem);
-        letter-spacing: -0.03em;
-        line-height: 1.1;
+        font-family: 'Vazirmatn', sans-serif;
+        font-weight: 800;
+        font-size: clamp(2.2rem, 4vw, 3.4rem);
+        line-height: 1.2;
         white-space: nowrap;
-        /* "What We Do" stays on one line */
     }
 
     .services-intro {
         font-size: 1rem;
-        line-height: 1.75;
+        line-height: 1.8;
         max-width: 52ch;
         padding-top: 0.25rem;
     }
 
-    /* Eyebrow / section label */
     .section-eyebrow {
-        font-family: 'Space Mono', monospace;
-        font-size: 0.6875rem;
+        font-family: 'Vazirmatn', sans-serif;
+        font-size: 0.8rem;
         font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.14em;
         color: var(--eyebrow-color);
     }
 
@@ -438,12 +390,10 @@
         opacity: 0.25;
     }
 
-    /* Block article divider */
     .block-article {
         border-top: 1px solid var(--section-border);
     }
 
-    /* Block left column typography */
     .block-index {
         font-family: 'Space Mono', monospace;
         font-size: 0.7rem;
@@ -464,40 +414,16 @@
     }
 
     .block-title {
-        font-family: 'Sora', sans-serif;
+        font-family: 'Vazirmatn', sans-serif;
         font-weight: 700;
-        font-size: 1.25rem;
-        line-height: 1.3;
-        letter-spacing: -0.02em;
-    }
-
-    @media (min-width: 768px) {
-        .block-title {
-            font-size: 1.375rem;
-        }
+        font-size: 1.35rem;
+        line-height: 1.4;
     }
 
     .block-tagline {
-        font-size: 0.9rem;
-        line-height: 1.7;
+        font-size: 0.95rem;
+        line-height: 1.75;
         max-width: 38ch;
-    }
-
-    /* ── Service tiles ── */
-    .bg-tile {
-        background: var(--tile-bg);
-    }
-
-    .bg-tile-hover {
-        background: var(--tile-bg-hover);
-    }
-
-    .border-tile-border {
-        border-color: var(--tile-border);
-    }
-
-    .border-tile-border-hover {
-        border-color: var(--tile-border-hover);
     }
 
     .service-tile {
@@ -512,7 +438,6 @@
         box-shadow: var(--shadow-card);
     }
 
-    /* Icon box inside tiles */
     .icon-box {
         background: var(--icon-box-bg);
     }
@@ -529,7 +454,6 @@
         color: var(--icon-box-color-hover);
     }
 
-    /* ── Pull quote block ── */
     .pull-quote {
         background: var(--quote-bg);
         border: 1px solid var(--quote-border);
@@ -543,36 +467,26 @@
     }
 
     .pull-quote-text {
-        font-size: 1.25rem;
+        font-size: 1.3rem;
         font-weight: 700;
-        letter-spacing: -0.02em;
-        line-height: 1.4;
-    }
-
-    @media (min-width: 768px) {
-        .pull-quote-text {
-            font-size: 1.5rem;
-        }
+        line-height: 1.5;
     }
 
     .pull-quote-body {
-        font-size: 0.9375rem;
-        line-height: 1.75;
+        font-size: 0.95rem;
+        line-height: 1.8;
     }
 
     .pull-quote-footer {
         border-top-color: var(--quote-border);
     }
 
-    /* ── CTA button ── */
     .footer-cta-heading {
-        font-size: clamp(1.5rem, 2.5vw, 2rem);
+        font-size: clamp(1.4rem, 2.2vw, 1.85rem);
         font-weight: 700;
-        letter-spacing: -0.02em;
-        line-height: 1.25;
+        line-height: 1.35;
     }
 
-    /* ── Accent elements ── */
     .accent-glow {
         text-shadow: 0 0 12px rgba(153, 27, 27, 0.25);
     }
@@ -585,29 +499,21 @@
         box-shadow: 0 0 18px rgba(245, 158, 11, 0.15);
     }
 
-    /* ── Neumorphic ── */
     .shadow-neumorphic {
         box-shadow: var(--shadow-neumorphic);
     }
 
-    /* ── Glass panels ── */
     .glass-panel {
         background: color-mix(in lch, var(--background) 72%, transparent);
         backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
     }
 
     .glass-bar {
         background: color-mix(in lch, var(--card) 80%, transparent);
         backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
     }
 
-    /* ═══════════════════════════════════════════════════════════
-     ANIMATIONS
-  ═══════════════════════════════════════════════════════════ */
-
-    /* Staggered appear on load */
+    /* Animations config */
     .appear {
         --appear-speed: 0.6s;
         --appear-offset-y: 4vh;
@@ -618,9 +524,7 @@
     .appear>* {
         opacity: 1;
         transform: translate(0, 0);
-        transition:
-            opacity var(--appear-speed),
-            transform var(--appear-speed) var(--appear-ease);
+        transition: opacity var(--appear-speed), transform var(--appear-speed) var(--appear-ease);
 
         @starting-style {
             opacity: 0;
@@ -652,15 +556,6 @@
         transition-delay: calc(6 * var(--appear-delay));
     }
 
-    @media (prefers-reduced-motion: reduce) {
-        .appear>* {
-            opacity: 1;
-            transform: none;
-            transition: none;
-        }
-    }
-
-    /* Hero code watermark */
     .hero-code-animation-container {
         position: absolute;
         inset: 0;
@@ -671,30 +566,19 @@
         contain: layout paint;
         mask-image:
             linear-gradient(to bottom, transparent 0%, white 15%, white 70%, transparent 100%),
-            linear-gradient(to right, white 0%, white 50%, transparent 80%);
-        -webkit-mask-image:
-            linear-gradient(to bottom, transparent 0%, white 15%, white 70%, transparent 100%),
-            linear-gradient(to right, white 0%, white 50%, transparent 80%);
+            linear-gradient(to left, white 0%, white 50%, transparent 80%);
+        /* Inverted horizontally for RTL backdrop */
         mask-composite: intersect;
-        -webkit-mask-composite: source-in;
     }
 
     .hero-code-animation {
-        padding: 6rem 2rem 4rem 3rem;
+        padding: 6rem 3rem 4rem 2rem;
         background: none;
         color: currentColor;
-        font-family: ui-monospace, 'Cascadia Code', 'Fira Code', monospace;
+        font-family: ui-monospace, monospace;
         font-size: clamp(0.65rem, 1.2vw, 0.95rem);
         line-height: 1.8;
-        overflow: hidden;
         user-select: none;
-    }
-
-    .hero-code-animation pre {
-        margin: 0;
-        padding: 0;
-        white-space: pre;
-        min-height: 1.8em;
     }
 
     .hero-code-cursor {
@@ -710,12 +594,11 @@
     @keyframes hero-code-cursor-blink {
 
         0%,
-        50% {
+        100% {
             opacity: 1;
         }
 
-        51%,
-        100% {
+        50% {
             opacity: 0;
         }
     }
@@ -737,22 +620,22 @@
         color: currentColor;
     }
 
-    /* Grid bg drift */
     @keyframes grid-move {
         0% {
             transform: translate(0, 0);
         }
 
         100% {
-            transform: translate(50px, 50px);
+            transform: translate(-50px, 50px);
         }
+
+        /* Flipped horizontally for RTL */
     }
 
     .animate-grid-move {
         animation: grid-move 20s linear infinite;
     }
 
-    /* Particle float */
     @keyframes particle-float {
 
         0%,
@@ -766,7 +649,7 @@
         }
 
         50% {
-            transform: translateY(-10vh) rotate(180deg);
+            transform: translateY(-10vh) rotate(-180deg);
             opacity: 0.16;
         }
 
@@ -779,10 +662,9 @@
         animation: particle-float 15s infinite ease-in-out;
     }
 
-    /* Ring orbit */
     @keyframes ring-orbit {
         to {
-            transform: rotate(360deg);
+            transform: rotate(-360deg);
         }
     }
 
@@ -790,27 +672,10 @@
         animation: ring-orbit 30s linear infinite;
     }
 
-    .ring-node {
-        position: absolute;
-        width: 24px;
-        height: 24px;
-        border-radius: 50%;
-        background: var(--background);
-        border: 1px solid var(--border);
-        display: grid;
-        place-items: center;
-        left: calc(50% - 12px + cos(var(--angle)) * var(--radius));
-        top: calc(50% - 12px - sin(var(--angle)) * var(--radius));
-        animation: ring-orbit-reverse 30s linear infinite;
+    .badge-float {
+        animation: badge-float 3.5s ease-in-out infinite;
     }
 
-    @keyframes ring-orbit-reverse {
-        to {
-            transform: rotate(-360deg);
-        }
-    }
-
-    /* Badge float */
     @keyframes badge-float {
 
         0%,
@@ -823,22 +688,20 @@
         }
     }
 
-    .badge-float {
-        animation: badge-float 3.5s ease-in-out infinite;
+    .animate-pizza-spin {
+        animation: pizza-spin 20s linear infinite;
     }
 
-    /* Pizza spin */
     @keyframes pizza-spin {
         to {
             transform: rotate(360deg);
         }
     }
 
-    .animate-pizza-spin {
-        animation: pizza-spin 20s linear infinite;
+    .hero-cursor {
+        animation: cursor-blink 1s step-end infinite;
     }
 
-    /* Hero cursor */
     @keyframes cursor-blink {
 
         0%,
@@ -852,11 +715,11 @@
         }
     }
 
-    .hero-cursor {
-        animation: cursor-blink 1s step-end infinite;
+    .hero-fade-in {
+        opacity: 0;
+        animation: hero-fade-in 0.7s ease-out forwards;
     }
 
-    /* Hero entrance */
     @keyframes hero-fade-in {
         from {
             opacity: 0;
@@ -869,9 +732,9 @@
         }
     }
 
-    .hero-fade-in {
+    .hero-scale-in {
         opacity: 0;
-        animation: hero-fade-in 0.7s ease-out forwards;
+        animation: hero-scale-in 0.8s ease-out forwards;
     }
 
     @keyframes hero-scale-in {
@@ -886,9 +749,9 @@
         }
     }
 
-    .hero-scale-in {
+    .hero-pop-in {
         opacity: 0;
-        animation: hero-scale-in 0.8s ease-out forwards;
+        animation: hero-pop-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     }
 
     @keyframes hero-pop-in {
@@ -907,12 +770,6 @@
         }
     }
 
-    .hero-pop-in {
-        opacity: 0;
-        animation: hero-pop-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    }
-
-    /* Scroll mouse indicator */
     .scroll-mouse {
         width: 24px;
         height: 38px;
@@ -942,46 +799,8 @@
             opacity: 0;
         }
     }
-
-    /* Misc keyframes */
-    @keyframes typing {
-        from {
-            width: 0;
-            opacity: 1;
-        }
-
-        to {
-            width: 100%;
-            opacity: 1;
-        }
-    }
-
-    @keyframes blink {
-
-        from,
-        to {
-            border-color: transparent
-        }
-
-        50% {
-            border-color: currentColor;
-        }
-    }
-
-    @keyframes fadeUp {
-        from {
-            opacity: 0;
-            transform: translateY(8px);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
 }
 
-/* ── White-mix utility ── */
 @utility bg-white-mix {
     background-color: rgba(255, 255, 255, 0.9);
 

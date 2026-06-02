@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState, lazy, Suspense } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Play, ArrowUpRight } from 'lucide-react';
+import { Play, ArrowUpLeft } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,34 +20,41 @@ interface Project {
   categoryLabel: string;
   media: MediaItem[];
   demo?: 'bylaw' | 'travel';
-  /** Accent color for the card — use a CSS custom property or a hex */
   accent: string;
-  /** Short tech stack labels shown at the bottom of each card */
   stack: string[];
   layout?: 'full' | 'default';
 }
 
 const projects: Project[] = [
   {
-    id: 'bylaw-ai', title: 'ByLaw AI',
-    description: 'AI-powered construction permit assistant that validates form data against Canadian National Building Code in real time.',
-    category: 'ai', categoryLabel: 'AI & Agents', demo: 'bylaw',
+    id: 'bylaw-ai',
+    title: 'هوش مصنوعی ByLaw AI',
+    description: 'دستیار هوشمند بررسی قوانین ساخت‌وساز که فرم‌ها و داده‌های معماری را با مقررات ملی ساختمان کانادا به صورت آنی تطبیق می‌دهد.',
+    category: 'ai',
+    categoryLabel: 'هوش مصنوعی و عامل‌ها',
+    demo: 'bylaw',
     media: [{ src: '/projects/bylaw/screenshot-1.png', type: 'image', device: 'mobile' }],
     accent: '#10b981',
     stack: ['LLM', 'RAG', 'React', 'FastAPI'],
   },
   {
-    id: 'travel-bot', title: 'AI Travel Assistant',
-    description: 'Agentic chatbot that joins group conversations, understands preferences, and suggests destinations with booking links.',
-    category: 'ai', categoryLabel: 'AI & Agents', demo: 'travel',
+    id: 'travel-bot',
+    title: 'دستیار هوشمند سفر',
+    description: 'عامل خودمختار هوش مصنوعی که با عضویت در گروه‌های گفتگو، نیازهای کاربران را درک کرده و پیشنهادهای سفر به همراه لینک رزرو ارائه می‌دهد.',
+    category: 'ai',
+    categoryLabel: 'هوش مصنوعی و عامل‌ها',
+    demo: 'travel',
     media: [],
     accent: '#8b5cf6',
     stack: ['Agents', 'NLP', 'Telegram', 'Node.js'],
   },
   {
-    id: 'arvr-showcase', title: 'AR / VR Experiences',
-    description: 'Augmented and virtual reality applications — from AR marker tracking to photorealistic architectural visualization in Unreal Engine 5.',
-    category: 'xr', categoryLabel: 'XR / 3D', layout: 'full',
+    id: 'arvr-showcase',
+    title: 'تجربه‌های چندبعدی AR / VR',
+    description: 'پیاده‌سازی اپلیکیشن‌های واقعیت افزوده و مجازی؛ از سیستم‌های ردیابی مارکر تا شبیه‌سازی‌های معماری فوق‌واقع‌گرایانه در Unreal Engine 5.',
+    category: 'xr',
+    categoryLabel: 'واقعیت مجازی و سه‌بعدی',
+    layout: 'full',
     media: [
       { src: '/projects/arvr/render-1.png', type: 'image', device: 'desktop' },
       { src: '/projects/arvr/render-2.png', type: 'image', device: 'desktop' },
@@ -65,9 +72,11 @@ const projects: Project[] = [
     stack: ['Unreal Engine 5', 'Unity', 'ARCore', 'WebGL'],
   },
   {
-    id: 'shaderweb', title: 'ShaderWeb',
-    description: 'WebGL-powered WordPress site featuring realtime 3D shader backgrounds and interactive visual effects.',
-    category: 'wordpress', categoryLabel: 'WordPress',
+    id: 'shaderweb',
+    title: 'پلتفرم تفریحی ShaderWeb',
+    description: 'وب‌سایت اختصاصی وردپرس مبتنی بر شیدرهای سه‌بعدی و تعاملی WebGL و جلوه‌های بصری پویا در مرورگر.',
+    category: 'wordpress',
+    categoryLabel: 'وردپرس تخصصی',
     media: [
       { src: '/projects/shaderweb/desktop-1.png', type: 'image', device: 'desktop' },
       { src: '/projects/shaderweb/desktop-2.png', type: 'image', device: 'desktop' },
@@ -78,9 +87,11 @@ const projects: Project[] = [
     stack: ['WordPress', 'GLSL', 'Three.js', 'PHP'],
   },
   {
-    id: 'sponixtech', title: 'SponixTech',
-    description: 'Corporate website for an AR/VR tech company — custom WordPress theme with immersive product showcases.',
-    category: 'wordpress', categoryLabel: 'WordPress',
+    id: 'sponixtech',
+    title: 'وب‌سایت شرکتی SponixTech',
+    description: 'پورتال سازمانی برای یک شرکت بین‌المللی فناوری‌های ورزشی؛ توسعه قالب اختصاصی وردپرس به همراه نمایشگرهای غوطه‌وری محصولات.',
+    category: 'wordpress',
+    categoryLabel: 'وردپرس تخصصی',
     media: [
       { src: '/projects/sponixtech/desktop-1.png', type: 'image', device: 'desktop' },
       { src: '/projects/sponixtech/desktop-2.png', type: 'image', device: 'desktop' },
@@ -92,9 +103,11 @@ const projects: Project[] = [
     stack: ['WordPress', 'ACF', 'GSAP', 'CSS'],
   },
   {
-    id: 'jabeh', title: 'Jabeh',
-    description: 'Shopify e-commerce store with custom theme, optimized checkout flow, and mobile-first design.',
-    category: 'shopify', categoryLabel: 'Shopify',
+    id: 'jabeh',
+    title: 'فروشگاه آنلاین جبه (Jabeh)',
+    description: 'فروشگاه تجارت الکترونیک شیک بر بستر شاپیفای همراه با کاستومایز کامل قالب، سئوی فنی پایدار و بهینه‌سازی سبد خرید موبایل.',
+    category: 'shopify',
+    categoryLabel: 'شاپیفای',
     media: [
       { src: '/projects/jabeh/desktop-1.png', type: 'image', device: 'desktop' },
       { src: '/projects/jabeh/mobile-1.png', type: 'image', device: 'mobile' },
@@ -104,9 +117,11 @@ const projects: Project[] = [
     stack: ['Shopify', 'Liquid', 'JavaScript', 'SEO'],
   },
   {
-    id: 'ilia', title: 'ILIA',
-    description: 'Bilingual WordPress site with custom plugin development, responsive design, and SEO optimization.',
-    category: 'wordpress', categoryLabel: 'WordPress',
+    id: 'ilia',
+    title: 'سامانه چندزبانه ایلیا (ILIA)',
+    description: 'سایت شرکتی دو زبانه با معماری بهینه افزونه‌های بومی، طراحی کاملاً ریسپانسیو مدرن و سئوی قوی ساختار قالب.',
+    category: 'wordpress',
+    categoryLabel: 'وردپرس تخصصی',
     media: [
       { src: '/projects/ilia/desktop-1.png', type: 'image', device: 'desktop' },
       { src: '/projects/ilia/desktop-2.png', type: 'image', device: 'desktop' },
@@ -119,9 +134,11 @@ const projects: Project[] = [
     stack: ['WordPress', 'i18n', 'Custom Plugin', 'Yoast'],
   },
   {
-    id: 'digidealize', title: 'Digidealize',
-    description: 'Digital agency portfolio built on WordPress with custom theme and interactive project showcases.',
-    category: 'wordpress', categoryLabel: 'WordPress',
+    id: 'digidealize',
+    title: 'آژانس دیجیتال Digidealize',
+    description: 'پورتفولیوی تعاملی خلاقانه با لودینگ‌های انیمیشنی بهینه و افکت‌های مدرن برای آژانس دیجیتال مارکتینگ بر بستر وردپرس.',
+    category: 'wordpress',
+    categoryLabel: 'وردپرس تخصصی',
     media: [
       { src: '/projects/digidealize/desktop-1.png', type: 'image', device: 'desktop' },
       { src: '/projects/digidealize/desktop-2.png', type: 'image', device: 'desktop' },
@@ -132,9 +149,11 @@ const projects: Project[] = [
     stack: ['WordPress', 'Elementor', 'GSAP', 'PHP'],
   },
   {
-    id: 'heatwellbeing', title: 'Heat Wellbeing',
-    description: 'Health and wellness platform — WordPress site with appointment booking, blog, and membership features.',
-    category: 'wordpress', categoryLabel: 'WordPress',
+    id: 'heatwellbeing',
+    title: 'پلتفرم جامع Heat Wellbeing',
+    description: 'سامانه نوبت‌دهی آنلاین، وبلاگ و اشتراک پریمیوم برای یک پلتفرم بین‌المللی حوزه سلامت و تندرستی.',
+    category: 'wordpress',
+    categoryLabel: 'وردپرس تخصصی',
     media: [
       { src: '/projects/heatwellbeing/desktop-1.png', type: 'image', device: 'desktop' },
       { src: '/projects/heatwellbeing/desktop-2.png', type: 'image', device: 'desktop' },
@@ -144,9 +163,11 @@ const projects: Project[] = [
     stack: ['WordPress', 'WooCommerce', 'Bookly', 'MemberPress'],
   },
   {
-    id: 'heat-academy', title: 'Heat Academy',
-    description: 'Custom LMS web application for continuing education — course management, progress tracking, certifications.',
-    category: 'webapp', categoryLabel: 'Web App',
+    id: 'heat-academy',
+    title: 'سامانه آموزشی Heat Academy',
+    description: 'برنامه وب سفارشی برای مدیریت دوره‌های آموزشی مداوم پزشکی، ارزیابی دانشجویان و صدور اتوماتیک گواهینامه‌ها.',
+    category: 'webapp',
+    categoryLabel: 'وب اپلیکیشن‌ اختصاصی',
     media: [
       { src: '/projects/heat-academy/desktop-1.png', type: 'image', device: 'desktop' },
       { src: '/projects/heat-academy/desktop-2.png', type: 'image', device: 'desktop' },
@@ -157,9 +178,11 @@ const projects: Project[] = [
     stack: ['React', 'Node.js', 'PostgreSQL', 'LMS'],
   },
   {
-    id: 'heat-extension', title: 'Heat Chrome Extension',
-    description: 'Chrome extension for healthcare professionals — patient lookup, profile management, and data fetching from clinical systems.',
-    category: 'extension', categoryLabel: 'Chrome Extension',
+    id: 'heat-extension',
+    title: 'افزونه کروم تخصصی Heat',
+    description: 'اکستنشن مرورگر کروم برای پزشکان با هدف جستجوی پرونده بیمار، استخراج و یکپارچه‌سازی متمرکز داده‌های کلینیکی در لحظه.',
+    category: 'extension',
+    categoryLabel: 'افزونه‌های مرورگر',
     media: [
       { src: '/projects/heat-extension/desktop-1.jpg', type: 'image', device: 'desktop' },
       { src: '/projects/heat-extension/desktop-2.jpg', type: 'image', device: 'desktop' },
@@ -171,13 +194,13 @@ const projects: Project[] = [
 ];
 
 const categories: { key: Category; label: string }[] = [
-  { key: 'all', label: 'All' },
-  { key: 'ai', label: 'AI' },
-  { key: 'xr', label: 'XR / 3D' },
-  { key: 'wordpress', label: 'WordPress' },
-  { key: 'shopify', label: 'Shopify' },
-  { key: 'webapp', label: 'Web Apps' },
-  { key: 'extension', label: 'Extensions' },
+  { key: 'all', label: 'همه پروژه‌ها' },
+  { key: 'ai', label: 'هوش مصنوعی' },
+  { key: 'xr', label: 'سه‌بعدی و XR' },
+  { key: 'wordpress', label: 'وردپرس' },
+  { key: 'shopify', label: 'شاپیفای' },
+  { key: 'webapp', label: 'وب اپلیکیشن‌ها' },
+  { key: 'extension', label: 'افزونه‌ها' },
 ];
 
 const SLIDE_INTERVAL = 4500;
@@ -207,7 +230,6 @@ function CrossfadeStack({ items, className }: { items: MediaItem[]; className?: 
   );
 }
 
-/** Tinted frosted media area — accent color as a subtle tint */
 function MediaDisplay({ media, accent }: { media: MediaItem[]; accent: string }) {
   const desktops = media.filter(m => m.device === 'desktop' && m.type === 'image');
   const mobiles = media.filter(m => m.device === 'mobile' && m.type === 'image');
@@ -215,7 +237,7 @@ function MediaDisplay({ media, accent }: { media: MediaItem[]; accent: string })
   const mainItems = [...desktops, ...videos];
   const dIdx = useAutoSlide(mainItems.length);
 
-  const tintStyle = { backgroundColor: accent + '18' }; // ~10% opacity tint
+  const tintStyle = { backgroundColor: accent + '18' };
 
   if (mainItems.length === 0 && mobiles.length === 0) {
     return <div className="h-60 md:h-72" style={tintStyle} />;
@@ -234,48 +256,44 @@ function MediaDisplay({ media, accent }: { media: MediaItem[]; accent: string })
               )}
             </div>
           ))}
-          {/* Slide counter */}
+          {/* Flipped horizontal counter coordinates for RTL standard alignment */}
           {mainItems.length > 1 && (
-            <div className="absolute top-3 right-3 z-20 font-mono text-[10px] px-2 py-0.5 rounded bg-black/50 text-white/80 backdrop-blur-sm">
+            <div className="absolute top-3 left-3 z-20 font-mono text-[10px] px-2 py-0.5 rounded bg-black/50 text-white/80 backdrop-blur-sm">
               {dIdx + 1} / {mainItems.length}
             </div>
           )}
         </>
       )}
 
-      {/* Video badge */}
       {videos.length > 0 && (
-        <div className="absolute top-3 left-3 z-20 flex items-center gap-1 px-2 py-0.5 rounded bg-black/50 backdrop-blur-sm text-white/80 text-[10px] font-mono">
-          <Play className="w-2.5 h-2.5" /> {videos.length} video{videos.length > 1 ? 's' : ''}
+        <div className="absolute top-3 right-3 z-20 flex items-center gap-1 px-2 py-0.5 rounded bg-black/50 backdrop-blur-sm text-white/80 text-[10px]">
+          <Play className="w-2.5 h-2.5" /> {videos.length} ویدیو
         </div>
       )}
 
-      {/* Mobile mockup peek */}
+      {/* Flipped positioning to bottom-left area for modern clean RTL mockup overflow visual layout */}
       {mobiles.length > 0 && (
-        <div className="absolute bottom-0 right-5 z-10 w-[18%] max-w-[96px]" style={{ transform: 'translateY(6%)' }}>
+        <div className="absolute bottom-0 left-5 z-10 w-[18%] max-w-[96px]" style={{ transform: 'translateY(6%)' }}>
           <CrossfadeStack items={mobiles} className="rounded-t-xl shadow-2xl shadow-black/40 overflow-hidden border border-white/20" />
         </div>
       )}
 
-      {/* Dot indicators */}
       {mainItems.length > 1 && (
-        <div className={`absolute bottom-3 z-20 flex gap-1.5 ${mobiles.length > 0 ? 'left-4' : 'left-1/2 -translate-x-1/2'}`}>
+        <div className={`absolute bottom-3 z-20 flex gap-1.5 ${mobiles.length > 0 ? 'right-4' : 'left-1/2 -translate-x-1/2'}`}>
           {mainItems.map((_, i) => (
             <div key={i} className="h-1 rounded-full transition-all duration-300" style={{ width: i === dIdx ? 20 : 6, background: i === dIdx ? '#fff' : 'rgba(255,255,255,0.35)' }} />
           ))}
         </div>
       )}
 
-      {/* Bottom gradient fade into card body */}
       <div className="absolute bottom-0 inset-x-0 h-12 pointer-events-none" style={{ background: `linear-gradient(to bottom, transparent, ${accent}10)` }} />
     </div>
   );
 }
 
-/** Stack pill row */
 function StackPills({ stack, accent }: { stack: string[]; accent: string }) {
   return (
-    <div className="flex flex-wrap gap-1.5 mt-4">
+    <div className="flex flex-wrap gap-1.5 mt-4" style={{ direction: 'ltr' }}>
       {stack.map(tag => (
         <span
           key={tag}
@@ -289,46 +307,39 @@ function StackPills({ stack, accent }: { stack: string[]; accent: string }) {
   );
 }
 
-/** Standard project card */
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <div className="project-card group flex flex-col rounded-2xl overflow-hidden border transition-all duration-300 bg-[var(--tile-bg)] border-[var(--tile-border)] hover:border-[var(--tile-border-hover)] hover:shadow-[var(--shadow-card)]">
+    <div className="project-card group flex flex-col rounded-2xl overflow-hidden border transition-all duration-300 bg-[var(--tile-bg)] border-[var(--tile-border)] hover:border-[var(--tile-border-hover)] hover:shadow-[var(--shadow-card)] text-right">
       <MediaDisplay media={project.media} accent={project.accent} />
-
       <div className="flex flex-col flex-1 p-6">
-        {/* Category + optional video badge */}
         <div className="flex items-center gap-2 mb-3 flex-wrap">
           <span
-            className="text-[10px] font-mono font-bold uppercase tracking-widest px-2.5 py-1 rounded"
+            className="text-[10px] font-bold uppercase tracking-wide px-2.5 py-1 rounded"
             style={{ color: project.accent, background: project.accent + '15' }}
           >
             {project.categoryLabel}
           </span>
           {project.media.some(m => m.type === 'video') && (
-            <span className="text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded bg-[var(--muted)] text-[var(--muted-foreground)] flex items-center gap-1">
-              <Play className="w-2.5 h-2.5" /> Video
+            <span className="text-[10px] px-2.5 py-1 rounded bg-[var(--muted)] text-[var(--muted-foreground)] flex items-center gap-1">
+              <Play className="w-2.5 h-2.5" /> ویدیو دارد
             </span>
           )}
         </div>
-
         <h3 className="text-lg font-bold tracking-tight text-foreground mb-2 leading-snug">{project.title}</h3>
         <p className="text-sm text-muted-foreground leading-relaxed flex-1">{project.description}</p>
-
         <StackPills stack={project.stack} accent={project.accent} />
       </div>
     </div>
   );
 }
 
-/** Full-width ARVR card */
 function ARVRSection({ project }: { project: Project }) {
   const images = project.media.filter(m => m.type === 'image');
   const videos = project.media.filter(m => m.type === 'video');
   const imgIdx = useAutoSlide(images.length);
 
   return (
-    <div className="project-card col-span-1 md:col-span-2 rounded-2xl overflow-hidden border bg-[var(--tile-bg)] border-[var(--tile-border)] hover:border-[var(--tile-border-hover)] hover:shadow-[var(--shadow-card)] transition-all duration-300">
-      {/* Large image carousel */}
+    <div className="project-card col-span-1 md:col-span-2 rounded-2xl overflow-hidden border bg-[var(--tile-bg)] border-[var(--tile-border)] hover:border-[var(--tile-border-hover)] hover:shadow-[var(--shadow-card)] transition-all duration-300 text-right">
       <div className="relative h-72 md:h-[420px] overflow-hidden" style={{ background: project.accent + '18' }}>
         {images.map((img, i) => (
           <div key={img.src} className="absolute inset-0 transition-opacity duration-1000" style={{ opacity: i === imgIdx ? 1 : 0 }}>
@@ -337,7 +348,7 @@ function ARVRSection({ project }: { project: Project }) {
         ))}
         {images.length > 1 && (
           <>
-            <div className="absolute top-3 right-3 z-10 font-mono text-[10px] px-2 py-0.5 rounded bg-black/50 text-white/80 backdrop-blur-sm">
+            <div className="absolute top-3 left-3 z-10 font-mono text-[10px] px-2 py-0.5 rounded bg-black/50 text-white/80 backdrop-blur-sm">
               {imgIdx + 1} / {images.length}
             </div>
             <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 flex gap-1.5">
@@ -349,25 +360,23 @@ function ARVRSection({ project }: { project: Project }) {
         )}
       </div>
 
-      {/* Videos grid */}
       {videos.length > 0 && (
         <div className="grid grid-cols-2 gap-3 p-4 border-t border-[var(--section-border)]">
           {videos.map(v => (
             <div key={v.src} className="relative rounded-xl overflow-hidden bg-black aspect-video">
               <video src={v.src} className="w-full h-full object-contain" autoPlay loop muted playsInline />
-              <div className="absolute top-2 left-2 flex items-center gap-1 px-2 py-0.5 rounded bg-black/60 backdrop-blur-sm text-white/80 text-[10px] font-mono">
-                <Play className="w-2.5 h-2.5" /> Video
+              <div className="absolute top-2 right-2 flex items-center gap-1 px-2 py-0.5 rounded bg-black/60 backdrop-blur-sm text-white/80 text-[10px]">
+                <Play className="w-2.5 h-2.5" /> ویدیو
               </div>
             </div>
           ))}
         </div>
       )}
 
-      {/* Info */}
       <div className="p-6 flex flex-col sm:flex-row sm:items-end gap-4">
         <div className="flex-1">
           <span
-            className="text-[10px] font-mono font-bold uppercase tracking-widest px-2.5 py-1 rounded mb-3 inline-block"
+            className="text-[10px] font-bold uppercase tracking-wide px-2.5 py-1 rounded mb-3 inline-block"
             style={{ color: project.accent, background: project.accent + '15' }}
           >
             {project.categoryLabel}
@@ -381,28 +390,24 @@ function ARVRSection({ project }: { project: Project }) {
   );
 }
 
-/** Demo card (ByLaw / Travel) */
 function DemoCard({ project }: { project: Project }) {
   const screenshotSrc = project.media.find(m => m.type === 'image')?.src;
   const Demo = project.demo === 'bylaw' ? ByLawDemo : TravelBotDemo;
 
   return (
-    <div className="project-card group flex flex-col rounded-2xl overflow-hidden border bg-[var(--tile-bg)] border-[var(--tile-border)] hover:border-[var(--tile-border-hover)] hover:shadow-[var(--shadow-card)] transition-all duration-300">
-      {/* Demo stage */}
+    <div className="project-card group flex flex-col rounded-2xl overflow-hidden border bg-[var(--tile-bg)] border-[var(--tile-border)] hover:border-[var(--tile-border-hover)] hover:shadow-[var(--shadow-card)] transition-all duration-300 text-right">
       <div
         className="relative flex items-end justify-center px-6 pt-8 pb-0 overflow-hidden"
         style={{ minHeight: 500, background: project.accent + '14' }}
       >
-        {/* Ghost screenshot behind */}
         {screenshotSrc && (
-          <div className="absolute z-0 opacity-30 pointer-events-none" style={{ width: 280, height: 400, left: '5%', bottom: 0, transform: 'translateY(10%) rotate(-6deg)' }}>
+          <div className="absolute z-0 opacity-30 pointer-events-none" style={{ width: 280, height: 400, right: '5%', bottom: 0, transform: 'translateY(10%) rotate(6deg)' }}>
             <div className="w-full h-full rounded-[28px] overflow-hidden border-2 border-white/20 shadow-2xl shadow-black/30">
               <img src={screenshotSrc} alt="" className="w-full h-full object-cover object-top" loading="lazy" />
             </div>
           </div>
         )}
 
-        {/* Live demo */}
         <div className="relative z-10" style={{ width: 300, height: 420, transform: 'translateY(16px)' }}>
           <Suspense fallback={
             <div className="h-full flex items-center justify-center text-sm text-muted-foreground font-mono">
@@ -414,17 +419,16 @@ function DemoCard({ project }: { project: Project }) {
         </div>
       </div>
 
-      {/* Card info */}
       <div className="flex flex-col flex-1 p-6">
         <div className="flex items-center gap-2 mb-3 flex-wrap">
           <span
-            className="text-[10px] font-mono font-bold uppercase tracking-widest px-2.5 py-1 rounded"
+            className="text-[10px] font-bold uppercase tracking-wide px-2.5 py-1 rounded"
             style={{ color: project.accent, background: project.accent + '15' }}
           >
             {project.categoryLabel}
           </span>
-          <span className="text-[10px] font-mono uppercase tracking-widest px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-            ● Live Demo
+          <span className="text-[10px] uppercase tracking-wide px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+            ● دمو زنده تعاملی
           </span>
         </div>
 
@@ -460,7 +464,6 @@ export default function Portfolio() {
     return () => ctx.revert();
   }, []);
 
-  /* Re-animate cards when filter changes */
   useEffect(() => {
     if (!gridRef.current) return;
     const cards = gridRef.current.querySelectorAll('.project-card');
@@ -470,32 +473,32 @@ export default function Portfolio() {
   }, [filter]);
 
   return (
-    <section id="projects" ref={sectionRef} className="py-20 md:py-32 bg-background border-t border-[var(--section-border)] transition-colors duration-300">
+    <section id="projects" ref={sectionRef} className="py-20 md:py-32 bg-background border-t border-[var(--section-border)] transition-colors duration-300 text-right">
       <div className="container">
 
         {/* ── Header ── */}
         <div ref={headingRef} className="mb-14">
           <div className="flex items-center gap-3 mb-5">
-            <span className="section-eyebrow">Projects</span>
+            <span className="section-eyebrow">پروژه‌های انجام شده</span>
             <span className="eyebrow-rule" aria-hidden />
           </div>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
             <div>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-4">Our Work</h2>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-4">پورتفولیو و نمونه کارها</h2>
               <p className="text-base text-muted-foreground max-w-xl leading-relaxed">
-                From AI-powered tools and national research platforms to WordPress sites, Shopify stores, and immersive XR experiences.
+                از ابزارهای مجهز به هوش مصنوعی عمیق و سامانه‌های ملی دانشگاهی گرفته تا وب‌سایت‌های سفارشی وردپرس، فروشگاه‌های شاپیفای و تجربه‌های واقعیت سه‌بعدی متمرکز.
               </p>
             </div>
-            {/* Project count badge */}
-            <div className="shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[var(--tile-bg)] border border-[var(--tile-border)]">
+            {/* Native Project Count Badge */}
+            <div className="shrink-0 flex items-center gap-3 px-4 py-2.5 rounded-xl bg-[var(--tile-bg)] border border-[var(--tile-border)]">
               <span className="font-mono text-2xl font-bold text-primary">{projects.length}</span>
-              <span className="text-xs text-muted-foreground font-medium leading-tight">Projects<br />completed</span>
+              <span className="text-xs text-muted-foreground font-medium leading-tight">پروژه فنی<br />به سرانجام رسیده</span>
             </div>
           </div>
         </div>
 
         {/* ── Category filter bar ── */}
-        <div className="flex flex-wrap gap-2 mb-10" role="group" aria-label="Filter projects by category">
+        <div className="flex flex-wrap gap-2 mb-10" role="group" aria-label="فیلتر کردن پروژه‌ها بر اساس دسته‌بندی تخصص">
           {categories.map(c => {
             const count = c.key === 'all' ? projects.length : projects.filter(p => p.category === c.key).length;
             const active = filter === c.key;
@@ -505,13 +508,12 @@ export default function Portfolio() {
                 onClick={() => setFilter(c.key)}
                 aria-pressed={active}
                 className={`group flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 border ${active
-                    ? 'bg-primary border-primary text-primary-foreground shadow-md shadow-primary/20'
-                    : 'bg-[var(--tile-bg)] border-[var(--tile-border)] text-muted-foreground hover:border-[var(--tile-border-hover)] hover:text-foreground'
+                  ? 'bg-primary border-primary text-primary-foreground shadow-md shadow-primary/20'
+                  : 'bg-[var(--tile-bg)] border-[var(--tile-border)] text-muted-foreground hover:border-[var(--tile-border-hover)] hover:text-foreground'
                   }`}
               >
                 {c.label}
-                <span className={`text-[11px] font-mono px-1.5 py-0.5 rounded transition-colors ${active ? 'bg-white/20 text-white' : 'bg-[var(--muted)] text-muted-foreground'
-                  }`}>
+                <span className={`text-[11px] font-mono px-1.5 py-0.5 rounded transition-colors ${active ? 'bg-white/20 text-white' : 'bg-[var(--muted)] text-muted-foreground'}`}>
                   {count}
                 </span>
               </button>

@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
   Layers, Brain, Store, Shield, IterationCw, Link2, Gauge, Handshake,
-  MessageCircle, Bot, Sparkles, Zap, LayoutGrid, Search, Box, ArrowRight,
+  MessageCircle, Bot, Sparkles, Zap, LayoutGrid, Search, Box, ArrowLeft,
   GraduationCap, Send, Globe, Workflow, Puzzle,
   type LucideIcon,
 } from 'lucide-react';
@@ -20,68 +20,68 @@ interface ServiceBlock {
 
 const serviceBlocks: ServiceBlock[] = [
   {
-    title: 'Building Software That Grows With You',
-    tagline: "We don't just build apps; we build dependable digital foundations that evolve as your business does.",
+    title: 'توسعه نرم‌افزاری که با شما رشد می‌کند',
+    tagline: 'ما فقط اپلیکیشن نمی‌سازیم؛ زیرساخت‌های دیجیتالی پایداری خلق می‌کنیم که همراه کسب‌وکار شما تکامل می‌یابند.',
     icon: Layers,
     items: [
-      { title: 'Custom Blueprinting', desc: 'We design a technical map for your goals—fast, flexible, future-ready.', icon: LayoutGrid },
-      { title: 'Security You Can Trust', desc: "Industry-best encryption and protection; we've built secure systems for healthcare and biotech.", icon: Shield },
-      { title: 'Iterative Development', desc: 'Short, transparent sprints. You see progress every step so we refine together.', icon: IterationCw },
-      { title: 'Unified Ecosystem', desc: 'We connect your APIs and systems into one seamless experience.', icon: Link2 },
-      { title: 'Built for Speed', desc: "We optimize for maximum efficiency—honed through Ph.D. research in HPC.", icon: Gauge },
-      { title: 'Long-Term Partner', desc: 'Ongoing support and updates so your software stays sharp and aligned.', icon: Handshake },
+      { title: 'طراحی نقشه راه تخصصی', desc: 'معماری فنی متناسب با اهداف تجاری شما؛ سریع، منعطف و آماده برای تغییرات آینده.', icon: LayoutGrid },
+      { title: 'امنیت قابل اعتماد', desc: 'بهترین پروتکل‌های رمزنگاری و حفاظتی صنعت؛ تجربه ساخت سیستم‌های امن برای بهداشت و بیوتکنولوژی.', icon: Shield },
+      { title: 'توسعه چابک و تکرارشونده', desc: 'اسپرینت‌های کوتاه و شفاف تا پیشرفت کار را در هر قدم مشاهده و با هم اصلاح کنیم.', icon: IterationCw },
+      { title: 'یکپارچه‌سازی اکوسیستم', desc: 'اتصال تمام سرویس‌ها و APIهای شما به یک سامانه کاملاً هماهنگ و یکپارچه.', icon: Link2 },
+      { title: 'بهینه‌سازی برای سرعت غایی', desc: 'بالاترین راندمان پردازشی با تکیه بر دانش تحقیقاتی رساله دکتری در محاسبات سریع (HPC).', icon: Gauge },
+      { title: 'شریک استراتژیک بلندمدت', desc: 'پشتیبانی و به‌روزرسانی مستمر نرم‌افزار تا سیستم شما همیشه کارآمد و همگام باقی بماند.', icon: Handshake },
     ],
   },
   {
-    title: 'AI That Actually Works For You',
-    tagline: 'Move beyond the hype. We build intelligent tools that handle the heavy lifting.',
+    title: 'هوش مصنوعی واقعی و کاربردی',
+    tagline: 'عبور از هیاهو و تبلیغات کاذب. ساخت ابزارهای هوشمندی که بارهای سنگین عملیاتی را به دوش می‌کشند.',
     icon: Brain,
     items: [
-      { title: 'Talk to Your Data', desc: 'Turn PDFs, CSVs, and databases into a private "brain" you can chat with.', icon: MessageCircle },
-      { title: 'Autonomous Agents', desc: 'Agentic AI that handles customer support, travel planning, legal validation—around the clock.', icon: Bot },
-      { title: 'Modernize with Intelligence', desc: 'Integrate AI to automate risk assessments and uncover growth opportunities.', icon: Sparkles },
-      { title: 'Rapid AI Deployment', desc: 'Pre-built enterprise frameworks get your custom AI solution live faster.', icon: Zap },
+      { title: 'گفتگو با داده‌های سازمانی', desc: 'تبدیل اسناد متنی، فایل‌های مالی و پایگاه داده‌ها به یک مغز اطلاعاتی خصوصی برای چت (RAG).', icon: MessageCircle },
+      { title: 'عامل‌های خودمختار (Agents)', desc: 'عامل‌های هوشمندی که پشتیبانی مشتریان، برنامه‌ریزی یا صحت‌سنجی اطلاعات را به‌طور مستقل انجام می‌دهند.', icon: Bot },
+      { title: 'هوشمندسازی ساختارهای قدیمی', desc: 'ادغام الگوریتم‌های یادگیری ماشین برای اتوماسیون ارزیابی ریسک و کشف فرصت‌های رشد.', icon: Sparkles },
+      { title: 'استقرار فوق‌سریع هوش مصنوعی', desc: 'استفاده از فریم‌ورک‌های سازمانی آماده جهت بومی‌سازی و پیاده‌سازی سریع مدل دلخواه شما.', icon: Zap },
     ],
   },
   {
-    title: 'Your Digital Storefront & Beyond',
-    tagline: 'From first clicks to checkout—sites and stores that convert.',
+    title: 'ویترین دیجیتال و فراتر از آن',
+    tagline: 'از اولین کلیک‌ها تا پرداخت نهایی؛ طراحی سایت‌ها و فروشگاه‌هایی که مخاطب را به مشتری تبدیل می‌کنند.',
     icon: Store,
     items: [
-      { title: 'WordPress & Shopify', desc: 'Sites that are easy for you to manage and impossible for customers to forget.', icon: LayoutGrid },
-      { title: 'Custom WordPress Plugins', desc: 'Tailored plugin development when no ready plugin fits—your site, your features, no compromise.', icon: Puzzle },
-      { title: 'SEO That Delivers', desc: "Data-driven optimization so you're the first answer your customers see.", icon: Search },
+      { title: 'توسعه وردپرس و شاپیفای', desc: 'راه‌اندازی سکوهای فروشگاهی و محتوایی با مدیریت آسان برای شما و تجربه کاربری فراموش‌نشدنی.', icon: LayoutGrid },
+      { title: 'افزونه‌های کاملاً اختصاصی', desc: 'برنامه‌نویسی و توسعه پلاگین‌های کاستوم وردپرس وقتی هیچ نمونه آماده‌ای پاسخگوی نیاز شما نیست.', icon: Puzzle },
+      { title: 'سئو مبتنی بر داده', desc: 'بهینه‌سازی مهندسی‌شده ساختار سایت تا اولین پاسخی باشید که مخاطبان در موتورهای جستجو می‌بینند.', icon: Search },
     ],
   },
   {
-    title: 'AR, VR & WebGL',
-    tagline: 'Immersive experiences and 3D on the web—we build AR and VR applications and WebGL-based sites.',
+    title: 'دنیای سه‌بعدی، AR ،VR و WebGL',
+    tagline: 'خلق تجربه‌های غوطه‌وری و پردازش ۳D مستقیم در مرورگر وب.',
     icon: Box,
     items: [
-      { title: 'AR Applications', desc: 'Augmented reality experiences for product previews, try-before-you-buy, and in-context visualization.', icon: Box },
-      { title: 'VR Applications', desc: 'Virtual reality apps and experiences for training, tours, and immersive storytelling.', icon: Layers },
-      { title: 'WebGL-Based Websites', desc: 'High-performance 3D and interactive experiences in the browser—configurators, visualizations, realtime apps.', icon: Globe },
+      { title: 'برنامه‌های واقعیت افزوده (AR)', desc: 'نمایش واقع‌گرایانه محصولات در محیط واقعی کاربر قبل از خرید جهت ارتقای نرخ تبدیل.', icon: Box },
+      { title: 'شبیه‌سازهای واقعیت مجازی (VR)', desc: 'توسعه اپلیکیشن‌های واقعیت مجازی برای سیستم‌های آموزشی پیشرفته، تورهای مجازی و روایتگری.', icon: Layers },
+      { title: 'سایت‌های مبتنی بر WebGL', desc: 'رندرینگ سه‌بعدی تعاملی و پرفورمنس بالا در وب بدون نیاز به نصب برنامه جانبی.', icon: Globe },
     ],
   },
   {
-    title: 'Bots & Automation That Scale',
-    tagline: 'We build bots and AI bots for messaging, scraping, and custom automation—so you focus on what matters.',
+    title: 'ربات‌ها و اتوماسیون‌های مقیاس‌پذیر',
+    tagline: 'توسعه اسکریپت‌ها و ربات‌های اختصاصی برای استخراج داده، پیام‌رسان‌ها و گردش کارهای اتوماتیک.',
     icon: Bot,
     items: [
-      { title: 'Telegram & Discord Bots', desc: 'Custom bots for communities, support, notifications, and workflows on Telegram and Discord.', icon: Send },
-      { title: 'Web Scrapers & Data Bots', desc: 'Reliable scrapers and data-collection bots that feed your systems without manual work.', icon: Globe },
-      { title: 'AI-Powered Bots', desc: 'Smart bots that understand context, answer questions, and automate conversations 24/7.', icon: MessageCircle },
-      { title: 'Custom Automation Systems', desc: 'Tailored automation pipelines that connect your tools and eliminate repetitive tasks.', icon: Workflow },
+      { title: 'ربات‌های تلگرام و دیسکورد', desc: 'طراحی بات‌های پیشرفته برای مدیریت جوامع کاربری، اتوماسیون پشتیبانی و سیستم‌های اعلان.', icon: Send },
+      { title: 'کراولرها و استخراج داده', desc: 'خزنده‌های تحت وب پایدار و ایمن جهت جمع‌آوری اطلاعات و تغذیه خودکار پایگاه‌های داده.', icon: Globe },
+      { title: 'ربات‌های مجهز به هوش مصنوعی', desc: 'بات‌های چت هوشمند که با درک متن و کانتکست، گفتگوها را به‌صورت ۲۴ ساعته هدایت می‌کنند.', icon: MessageCircle },
+      { title: 'خطوط اتوماسیون اختصاصی', desc: 'متصل کردن ابزارهای نرم‌افزاری پراکنده به یکدیگر و حذف کامل فرآیندهای تکراری دستی.', icon: Workflow },
     ],
   },
   {
-    title: 'Custom LMS on Moodle',
-    tagline: 'Avoid extra licensing costs and get a learning platform that fits your team—fully customizable and under your control.',
+    title: 'سیستم‌های آموزشی اختصاصی (LMS)',
+    tagline: 'حذف هزینه‌های سنگین لایسنس‌های خارجی با راه‌اندازی پلتفرم آموزشی بومی و تحت مالکیت کامل شما.',
     icon: GraduationCap,
     items: [
-      { title: 'Moodle-Based LMS', desc: 'Custom learning management systems built on Moodle—no per-seat vendor lock-in or surprise fees.', icon: GraduationCap },
-      { title: 'Built for Your Team', desc: 'Courses, roles, and workflows designed around how your organization actually learns.', icon: Layers },
-      { title: 'Full Customization', desc: 'Branding, integrations, and features tailored to your needs instead of one-size-fits-all SaaS.', icon: LayoutGrid },
+      { title: 'سامانه LMS بر پایه Moodle', desc: 'پیاده‌سازی هسته قدرتمند مودل بدون محدودیت در تعداد ثبت‌نام کاربران یا هزینه‌های پنهان سازندگان.', icon: GraduationCap },
+      { title: 'شخصی‌سازی فرآیند یادگیری', desc: 'تعریف دوره‌ها، سطوح دسترسی، آزمون‌ها و کارنامه‌ها دقیقاً منطبق بر مدل آموزشی سازمان شما.', icon: Layers },
+      { title: 'یکپارچگی کامل برندینگ', desc: 'طراحی اختصاصی رابط کاربری و اتصال به درگاه‌های پرداخت، سیستم‌های پیامکی و اداری داخلی.', icon: LayoutGrid },
     ],
   },
 ];
@@ -89,13 +89,12 @@ const serviceBlocks: ServiceBlock[] = [
 function ServiceTile({ item, index }: { item: { title: string; desc: string; icon: LucideIcon }; index: number }) {
   const Icon = item.icon;
   return (
-    <div className="service-tile group relative p-5 rounded-xl bg-tile border border-tile-border transition-all duration-200 hover:border-tile-border-hover hover:bg-tile-hover">
-      {/* Index number — faint background accent */}
-      <span className="absolute top-4 right-4 text-xs font-mono text-muted-foreground/25 select-none">
+    <div className="service-tile group relative p-5 rounded-xl bg-tile border border-tile-border transition-all duration-200 hover:border-tile-border-hover hover:bg-tile-hover text-right">
+      {/* Index counter flipped properly to top-left for standard Farsi interface layout alignment */}
+      <span className="absolute top-4 left-4 text-xs font-mono text-muted-foreground/25 select-none">
         {String(index + 1).padStart(2, '0')}
       </span>
 
-      {/* Icon */}
       <div className="w-8 h-8 rounded-lg icon-box flex items-center justify-center mb-4 transition-colors duration-200">
         <Icon className="w-4 h-4 icon-box-icon transition-colors duration-200" strokeWidth={1.75} />
       </div>
@@ -148,22 +147,21 @@ export default function Services() {
   }, []);
 
   return (
-    <section id="services" ref={containerRef} className="services-section py-24 md:py-36 border-t border-section-border">
+    <section id="services" ref={containerRef} className="services-section py-24 md:py-36 border-t border-section-border text-right">
       <div className="container max-w-7xl px-6 mx-auto">
 
         {/* ── Section Header ── */}
         <header className="services-header mb-20 md:mb-28">
           <div className="flex items-center gap-3 mb-5">
-            <span className="section-eyebrow">Our Core Capabilities</span>
+            <span className="section-eyebrow">توانمندی‌های مهندسی ما</span>
             <span className="eyebrow-rule" aria-hidden />
           </div>
           <div className="services-header-grid">
             <h2 className="services-h2 text-foreground">
-              What We Do
+              تمرکز و خدمات ما
             </h2>
             <p className="services-intro text-muted-foreground">
-              You&rsquo;re moving from &ldquo;hiring a coder&rdquo; to &ldquo;partnering with a technical
-              strategy team.&rdquo; We architect systems built for performance, security, and long-term autonomy.
+              شما در حال عبور از مرحله «استخدام یک کدنویس ساده» به «همکاری با یک تیم استراتژی فنی» هستید. ما سیستم‌هایی را معماری می‌کنیم که برای کارایی بالا، امنیت پایدار و استقلال طولانی‌مدت ساخته شده‌اند.
             </p>
           </div>
         </header>
@@ -178,9 +176,8 @@ export default function Services() {
                 ref={(el) => { blockRefs.current[idx] = el; }}
                 className="block-article grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 pt-10"
               >
-                {/* ── Left: sticky label column ── */}
+                {/* Left Side: Layout label block meta row */}
                 <div className="svc-left-col lg:col-span-4 lg:sticky lg:top-28 h-fit">
-                  {/* Block meta row */}
                   <div className="flex items-center gap-2 mb-4">
                     <span className="block-index">{String(idx + 1).padStart(2, '0')}</span>
                     <span className="block-index-rule" aria-hidden />
@@ -197,7 +194,7 @@ export default function Services() {
                   </p>
                 </div>
 
-                {/* ── Right: tile grid ── */}
+                {/* Right Side: Grid Cells cluster */}
                 <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {block.items.map((item, i) => (
                     <ServiceTile key={i} item={item} index={i} />
@@ -211,36 +208,34 @@ export default function Services() {
         {/* ── Footer CTA ── */}
         <footer className="services-footer mt-28 md:mt-40 pt-16 border-t border-section-border">
           <div className="max-w-3xl mx-auto text-center">
-            <span className="section-eyebrow mb-4 block">Let&rsquo;s Work Together</span>
+            <span className="section-eyebrow mb-4 block">بیایید همکاری را شروع کنیم</span>
             <h3 className="footer-cta-heading text-foreground mb-8">
-              Ready to bring engineering-grade precision to your next stack?
+              آماده‌اید دقت و ظرافت مهندسی نرم‌افزار را به محصول خود اضافه کنید؟
             </h3>
             <Button size="lg" className="cta-button group inline-flex items-center gap-2 rounded-lg h-12 px-7 text-sm font-semibold" asChild>
               <a href="#contacts">
-                Start a project
-                <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" aria-hidden />
+                شروع یک پروژه جدید
+                <ArrowLeft size={15} className="transition-transform group-hover:-translate-x-0.5" aria-hidden />
               </a>
             </Button>
           </div>
 
-          {/* ── Pull Quote ── */}
-          <blockquote className="pull-quote mt-20 rounded-2xl text-left">
+          {/* ── Corporate Philosophy Blockquote ── */}
+          <blockquote className="pull-quote mt-20 rounded-2xl text-right">
             <p className="pull-quote-text text-foreground">
-              &ldquo;Let&rsquo;s build something great together.&rdquo;
+              «بیایید با هم یک سیستم بزرگ بسازیم.»
             </p>
             <div className="pull-quote-body space-y-3 text-muted-foreground mt-4">
               <p>
-                We are a team of researchers and engineers who have spent 8+ years building everything from
-                national research platforms serving 100+ universities to AI tools that save professionals
-                weeks of manual labor.
+                ما تیمی از پژوهشگران و مهندسان هستیم که بیش از ۸ سال از عمر خود را صرف ساخت سیستم‌های گوناگون کرده‌ایم؛ از پلتفرم‌های تحقیقاتی ملی که به بیش از ۱۰۰ دانشگاه خدمات ارائه می‌دهند تا ابزارهای هوش مصنوعی پیشرفته‌ای که هفته‌ها کار دستی خسته‌کننده متخصصان را حذف می‌کنند.
               </p>
               <p>
-                We love solving hard problems, but we love seeing our friends succeed even more.
+                ما عاشق حل کردن چالش‌های سخت مهندسی هستیم، اما دیدن موفقیت و درخشش شرکای تجاری‌مان برای ما از هر چیز دیگری لذت‌بخش‌تر است.
               </p>
             </div>
             <footer className="pull-quote-footer mt-8 pt-5 border-t border-quote-border flex items-center gap-2.5">
               <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" aria-hidden />
-              <span className="text-xs font-mono text-muted-foreground font-medium">— The code4pizza team</span>
+              <span className="text-xs font-mono text-muted-foreground font-medium">— تیم توسعه code4pizza</span>
             </footer>
           </blockquote>
         </footer>

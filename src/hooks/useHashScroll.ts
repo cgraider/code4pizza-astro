@@ -16,7 +16,7 @@ function getOffsetTop(el: HTMLElement, container: HTMLElement): number {
 /**
  * Intercepts in-page hash links, scrolls the window smoothly to the target section
  * (so the GSAP scroll proxy updates), then refreshes ScrollTrigger so section
- * animations "load" and run correctly.
+ * animations "load" and run correctly in RTL layout directions.
  */
 export function useHashScroll(contentRef: React.RefObject<HTMLElement | null>) {
   useEffect(() => {
@@ -35,7 +35,8 @@ export function useHashScroll(contentRef: React.RefObject<HTMLElement | null>) {
       e.preventDefault();
       const top = Math.max(0, getOffsetTop(el, content) - HEADER_OFFSET);
       window.scrollTo({ top, behavior: 'smooth' });
-      // After smooth scroll settles, refresh so section ScrollTriggers run and content "loads"
+      
+      // After smooth scroll settles, refresh so section ScrollTriggers run and content loads
       setTimeout(() => ScrollTrigger.refresh(), 900);
     }
 
